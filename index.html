@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sintropy.AI × Vincenzo Reina | GTM Strategy</title>
   <style>
-    /* SINTROPY DARK & GOLD PALETTE */
+    /* SINTROPY DARK & GOLD INFOGRAPHIC PALETTE */
     :root {
-      --bg-dark: #070B12;             /* Deep night background */
-      --card-bg: rgba(15, 23, 42, 0.7);/* Dark slate card container */
-      --card-border: rgba(234, 179, 8, 0.15);
-      --text-main: #F8FAFC;          /* Clean white */
-      --text-muted: #94A3B8;         /* Muted gray */
-      --gold-primary: #EAB308;       /* Brand Gold / Warm Yellow */
-      --gold-dark: #CA8A04;          /* Deeper gold tone */
+      --bg-dark: #070B12;             
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(234, 179, 8, 0.18);
+      --text-main: #F8FAFC;          
+      --text-muted: #94A3B8;         
+      --gold-primary: #EAB308;       
+      --gold-dark: #CA8A04;          
       --gold-glow: rgba(234, 179, 8, 0.12);
-      --blue-accent: #38BDF8;        /* Cyan-blue for secondary highlights */
+      --blue-accent: #38BDF8;        
+      --border-subtle: rgba(255, 255, 255, 0.08);
     }
 
     * {
@@ -28,8 +29,8 @@
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
-      line-height: 1.6;
-      padding: 3rem 1.5rem;
+      line-height: 1.5;
+      padding: 2rem 1rem;
       background-image: 
         radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08) 0%, transparent 60%),
         radial-gradient(circle at 80% 40%, rgba(30, 41, 59, 0.5) 0%, transparent 50%);
@@ -37,25 +38,27 @@
     }
 
     .container {
-      max-width: 880px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
-    /* HEADER SECTION */
+    /* HEADER INFOGRAFICO */
     header {
       text-align: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
       animation: fadeIn 0.8s ease-out;
     }
 
     .top-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--gold-primary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       background: var(--gold-glow);
       padding: 0.4rem 1rem;
       border-radius: 99px;
@@ -63,314 +66,294 @@
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
       color: var(--text-main);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
-    h1 span.gold {
-      color: var(--gold-primary);
-    }
+    h1 span.gold { color: var(--gold-primary); }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       font-weight: 400;
-      max-width: 700px;
+      max-width: 650px;
       margin: 0 auto;
     }
 
-    /* METRICS STRIP - DARK GOLD */
-    .metrics-strip {
+    /* STRIP STATISTICHE / KPI */
+    .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      background: rgba(15, 23, 42, 0.8);
-      padding: 1.5rem 2rem;
-      border-radius: 16px;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      text-align: center;
       backdrop-filter: blur(12px);
     }
 
-    .metric-item {
-      text-align: center;
-    }
-
-    .metric-number {
-      font-size: 2.2rem;
+    .kpi-value {
+      font-size: 1.8rem;
       font-weight: 800;
       color: var(--text-main);
-      letter-spacing: -0.02em;
+      line-height: 1;
     }
 
-    .metric-number span {
-      color: var(--gold-primary);
-      font-size: 1.4rem;
-    }
+    .kpi-value span { color: var(--gold-primary); }
 
-    .metric-label {
-      font-size: 0.85rem;
+    .kpi-label {
+      font-size: 0.75rem;
       color: var(--text-muted);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
     }
 
-    /* CARD SYSTEM */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(12px);
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(234, 179, 8, 0.4);
-      box-shadow: 0 20px 40px -12px rgba(234, 179, 8, 0.1);
+    /* SEZIONE TIMELINE / STRATEGY FLOW */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     .section-num {
-      font-size: 0.8rem;
+      background: var(--gold-primary);
+      color: #000;
       font-weight: 800;
-      color: var(--gold-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.4rem;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
     }
 
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--text-main);
-      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
 
-    p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 1rem;
+    /* CARD STYLE INFOGRAFICO */
+    .infographic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     }
 
-    strong {
-      color: var(--text-main);
-      font-weight: 700;
+    .infographic-card:hover {
+      border-color: rgba(234, 179, 8, 0.3);
     }
 
     .highlight-box {
-      background: rgba(30, 41, 59, 0.5);
-      border-left: 4px solid var(--gold-primary);
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 12px 12px 0;
-      margin-top: 1.25rem;
+      background: rgba(30, 41, 59, 0.6);
+      border-left: 3px solid var(--gold-primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 10px 10px 0;
+      margin-top: 1rem;
+      font-size: 0.95rem;
     }
 
-    /* LEVERS GRID */
-    .lever-grid {
+    /* GRID A 2 COLONNE PER LE 4 LEVE (RESPONSIVE MOBILE FIRST) */
+    .levers-container {
       display: grid;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
     }
 
-    .lever-card {
-      background: rgba(30, 41, 59, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    .lever-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
       border-radius: 14px;
       padding: 1.5rem;
-      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .lever-card:hover {
-      background: rgba(30, 41, 59, 0.7);
+    .lever-box:hover {
+      transform: translateY(-2px);
       border-color: var(--gold-primary);
     }
 
-    .lever-card h3 {
-      font-size: 1.15rem;
+    .lever-badge {
+      align-self: flex-start;
+      font-size: 0.65rem;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--gold-primary);
+      background: rgba(234, 179, 8, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
       margin-bottom: 0.75rem;
     }
 
-    ul.lever-list {
+    .lever-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+
+    .lever-box ul {
       list-style: none;
     }
 
-    ul.lever-list li {
+    .lever-box li {
       color: var(--text-muted);
-      font-size: 0.98rem;
-      margin-bottom: 0.6rem;
-      padding-left: 1.4rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
       position: relative;
     }
 
-    ul.lever-list li::before {
+    .lever-box li::before {
       content: "•";
       position: absolute;
-      left: 0.3rem;
+      left: 0;
       color: var(--gold-primary);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       line-height: 1;
     }
 
     /* ----------------------------------------------------------------- */
-    /* WINDOWS XP SPECIFIC COMPONENT (DETACHED RETRO ELEMENT)           */
+    /* WINDOWS XP COMPONENT (FIXED SPACING & ALIGNMENT)                 */
     /* ----------------------------------------------------------------- */
     .xp-window {
-      background: #ECE9D8; /* Classic XP Gray/Beige */
+      background: #ECE9D8;
       border: 3px solid #0055EA;
       border-radius: 8px 8px 0 0;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px #002B9A;
-      font-family: "Tahoma", "Segoe UI", sans-serif;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      font-family: "Tahoma", sans-serif;
       color: #000;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
       overflow: hidden;
-      animation: fadeInUp 1s ease-out;
     }
 
     .xp-titlebar {
-      background: linear-gradient(180deg, #0058EE 0%, #3593FF 4%, #288EFC 6%, #005BFA 8%, #0052E0 14%, #0041CD 50%, #004AE4 86%, #004AE4 90%, #003DD7 92%, #0031B8 100%);
-      padding: 6px 10px;
+      background: linear-gradient(180deg, #0058EE 0%, #3593FF 4%, #005BFA 8%, #004AE4 90%, #0031B8 100%);
+      padding: 5px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #FFF;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       text-shadow: 1px 1px 1px #000;
-      user-select: none;
     }
 
-    .xp-title-text {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .xp-controls {
-      display: flex;
-      gap: 3px;
-    }
+    .xp-controls { display: flex; gap: 3px; }
 
     .xp-btn {
-      width: 21px;
-      height: 21px;
+      width: 18px;
+      height: 18px;
       border-radius: 3px;
       border: 1px solid #FFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: bold;
       color: #FFF;
-      cursor: pointer;
-      box-shadow: inset 0 -1px 2px rgba(0,0,0,0.3);
     }
 
-    .xp-min { background: linear-gradient(180deg, #3C91FF, #0050D8); }
-    .xp-max { background: linear-gradient(180deg, #3C91FF, #0050D8); }
-    .xp-close { background: linear-gradient(180deg, #E7664B 0%, #C23116 100%); border-color: #FFF; }
+    .xp-min, .xp-max { background: linear-gradient(180deg, #3C91FF, #0050D8); }
+    .xp-close { background: linear-gradient(180deg, #E7664B 0%, #C23116 100%); }
 
     .xp-body {
-      padding: 1.5rem;
+      padding: 1.25rem;
       background: #F8F8F5;
       font-family: "Tahoma", sans-serif;
       color: #222;
     }
 
     .xp-body h3 {
-      font-size: 16px;
+      font-size: 15px;
       color: #0A246A;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       font-weight: bold;
     }
 
     .xp-body p {
-      color: #333;
-      font-size: 13px;
-      margin-bottom: 0.8rem;
+      color: #444;
+      font-size: 12px;
+      margin-bottom: 0.75rem;
     }
 
+    /* FIX DEFINITIVO SPAZIATURA PUNTI ELENCO WINDOWS XP */
     .xp-body ul {
       list-style: none;
-      margin-bottom: 1.2rem;
+      margin: 0 0 1.2rem 0;
+      padding: 0;
     }
 
     .xp-body li {
-      font-size: 13px;
-      color: #333;
+      font-size: 12px;
+      color: #222;
       margin-bottom: 0.4rem;
-      padding-left: 1rem;
+      padding-left: 0.85rem; /* Ridotto il padding eccessivo */
       position: relative;
+      line-height: 1.4;
     }
 
     .xp-body li::before {
       content: "›";
       position: absolute;
       left: 0;
+      top: -1px;
       color: #0A246A;
       font-weight: bold;
-      font-size: 15px;
-      top: -2px;
+      font-size: 14px;
     }
 
     .xp-button-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: linear-gradient(180deg, #FFF 0%, #ECE9D8 100%);
       border: 1px solid #003C74;
       border-radius: 3px;
-      padding: 6px 16px;
+      padding: 6px 14px;
       color: #000;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
       text-decoration: none;
       box-shadow: inset -1px -1px 1px #808080, inset 1px 1px 1px #FFF;
-      cursor: pointer;
-    }
-
-    .xp-button-cta:active {
-      box-shadow: inset 1px 1px 2px #808080;
     }
 
     footer {
       text-align: center;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    /* MOBILE FIRST - BREAKPOINTS */
     @media (max-width: 640px) {
-      body { padding: 1.5rem 1rem; }
-      h1 { font-size: 2.1rem; }
-      .metrics-strip { grid-template-columns: 1fr; gap: 1rem; }
-      .card { padding: 1.5rem; }
+      body { padding: 1.25rem 0.75rem; }
+      h1 { font-size: 1.8rem; }
+      .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .levers-container { grid-template-columns: 1fr; }
+      .infographic-card { padding: 1.25rem; }
+      .xp-body { padding: 1rem; }
     }
   </style>
 </head>
@@ -378,89 +361,92 @@
 
   <div class="container">
     
-    <!-- HEADER -->
+    <!-- HEADER INFOGRAFICO -->
     <header>
-      <span class="top-tag">Sintropy.AI × Vincenzo Reina</span>
-      <h1>Scaling GTM: <span class="gold">From Traction to Market Leadership</span></h1>
-      <p class="subtitle">A strategic positioning & growth proposal for Sintropy's next phase of scale.</p>
+      <div class="top-tag">Sintropy.AI × Vincenzo Reina</div>
+      <h1>Scaling GTM: <span class="gold">From Seed to Scale</span></h1>
+      <p class="subtitle">A visual B2B growth proposal for Sintropy's next expansion phase.</p>
     </header>
 
-    <!-- METRICS STRIP -->
-    <div class="metrics-strip">
-      <div class="metric-item">
-        <div class="metric-number">€1M<span>+</span></div>
-        <div class="metric-label">Seed Round Runway</div>
+    <!-- METRICS / STRIP INFOGRAFICA -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-value">€1M<span>+</span></div>
+        <div class="kpi-label">Seed Round Runway</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-number">25<span>%</span></div>
-        <div class="metric-label">Shared Savings Model</div>
+      <div class="kpi-card">
+        <div class="kpi-value">25<span>%</span></div>
+        <div class="kpi-label">Shared Savings ROI</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-number">4<span>x</span></div>
-        <div class="metric-label">GTM Growth Levers</div>
+      <div class="kpi-card">
+        <div class="kpi-value">4<span>x</span></div>
+        <div class="kpi-label">Growth Pillars</div>
       </div>
     </div>
 
-    <!-- SECTION 1: THE OPPORTUNITY -->
-    <div class="card">
-      <div class="section-num">01 / OPPORTUNITY</div>
+    <!-- SEZIONE 1: THE OPPORTUNITY -->
+    <div class="section-header">
+      <span class="section-num">01</span>
       <h2>Where Sintropy Stands Today</h2>
-      <p>The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. Further validating this momentum, the successful <strong>€1M Seed funding round</strong> provides the exact runway needed to transition from early traction to <strong>scalable acquisition</strong> across large-scale multisite Food Retail, QSR, and Grocery chains.</p>
+    </div>
+
+    <div class="infographic-card">
+      <p>The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. The successful <strong>€1M Seed funding round</strong> provides the exact runway needed to transition from early traction to <strong>scalable acquisition</strong> across Food Retail, QSR, and Grocery chains.</p>
       
       <div class="highlight-box">
-        <p style="margin-bottom: 0;"><strong>The B2B Bottleneck:</strong><br>
-        Selling IoT and hardware systems to Enterprise C-Levels (Operations, CFOs, ESG Directors) involves complex decision cycles. Overcoming this friction demands a <strong>balanced mix of Brand Awareness and channel execution</strong>, strictly optimized around Customer Acquisition Cost (CAC) and immediate proof of ROI.</p>
+        <strong>The B2B Bottleneck:</strong> Long C-Level decision cycles (Operations, CFOs, ESG) demand a balanced mix of <strong>Brand Awareness and targeted channel execution</strong>, strictly optimized around Customer Acquisition Cost (CAC).
       </div>
     </div>
 
-    <!-- SECTION 2: 4 STRATEGIC LEVERS -->
-    <div class="card">
-      <div class="section-num">02 / STRATEGY</div>
+    <!-- SEZIONE 2: 4 STRATEGIC LEVERS (GRID INFOGRAFICA) -->
+    <div class="section-header">
+      <span class="section-num">02</span>
       <h2>4 Strategic Growth Levers</h2>
-      
-      <div class="lever-grid">
-        
-        <div class="lever-card">
-          <h3>1. ABM & Enterprise Expansion</h3>
-          <ul class="lever-list">
-            <li><strong>Hyper-Targeted Campaigns:</strong> Account-Based Marketing motions for key decision-makers (CFOs, COOs, Sustainability Leads), leveraging the zero-risk ROI model.</li>
-            <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative for enterprise retail groups.</li>
-          </ul>
-        </div>
-
-        <div class="lever-card">
-          <h3>2. Product Marketing & Technical Enablement</h3>
-          <ul class="lever-list">
-            <li><strong>Translating Complexity:</strong> Converting IoT sensor data into clear executive metrics (e.g., <em>"Average €X savings per store / HACCP compliance"</em>).</li>
-            <li><strong>Multi-Tier Enablement:</strong> Tailored documentation ranging from high-level executive pitch decks for CFOs to deep-dive technical whitepapers for engineers.</li>
-            <li><strong>Vertical Pain-Point Mapping:</strong> Researching industry-specific friction points to shorten sales cycles.</li>
-          </ul>
-        </div>
-
-        <div class="lever-card">
-          <h3>3. Storytelling & Brand Trust</h3>
-          <ul class="lever-list">
-            <li><strong>High-Impact Narrative:</strong> Shaping Sintropy’s brand story to convey authority, empathy, and vision—moving the market perception from a hardware vendor to a strategic energy transition partner.</li>
-          </ul>
-        </div>
-
-        <div class="lever-card">
-          <h3>4. AI-Driven Ops & CRM Integration</h3>
-          <ul class="lever-list">
-            <li><strong>CRM & Funnel Integration:</strong> Designing a unified CRM architecture to track and optimize multi-channel acquisition funnels.</li>
-            <li><strong>AI-Powered Content Engine:</strong> Utilizing GenAI agents for automated content creation, hyper-personalized outbound, and rapid lead nurturing.</li>
-          </ul>
-        </div>
-
-      </div>
     </div>
 
-    <!-- SECTION 3: ABOUT ME (DETACHED WINDOWS XP COMPONENT) -->
+    <div class="levers-container">
+      
+      <div class="lever-box">
+        <span class="lever-badge">PILLAR 1 — ABM</span>
+        <h3>Enterprise Expansion</h3>
+        <ul>
+          <li><strong>Hyper-Targeted ABM:</strong> Dedicated motions for CFOs, COOs & ESG Leads built around the zero-risk ROI model.</li>
+          <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a core brand narrative.</li>
+        </ul>
+      </div>
+
+      <div class="lever-box">
+        <span class="lever-badge">PILLAR 2 — ENABLEMENT</span>
+        <h3>Product Marketing</h3>
+        <ul>
+          <li><strong>Translating Complexity:</strong> Converting IoT data into clear commercial metrics (e.g., <em>"Average €X savings per store"</em>).</li>
+          <li><strong>Multi-Tier Assets:</strong> Executive decks for CFOs + technical whitepapers for engineers.</li>
+        </ul>
+      </div>
+
+      <div class="lever-box">
+        <span class="lever-badge">PILLAR 3 — BRAND TRUST</span>
+        <h3>Storytelling</h3>
+        <ul>
+          <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
+        </ul>
+      </div>
+
+      <div class="lever-box">
+        <span class="lever-badge">PILLAR 4 — OPS & AI</span>
+        <h3>Automation Engine</h3>
+        <ul>
+          <li><strong>CRM Funnel Architecture:</strong> Unified acquisition tracking.</li>
+          <li><strong>AI-Powered Content:</strong> GenAI agents for automated content, outbound & rapid lead nurturing.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- SEZIONE 3: ABOUT ME (DETACHED WINDOWS XP COMPONENT WITH FIXED SPACING) -->
     <div class="xp-window">
       <div class="xp-titlebar">
-        <div class="xp-title-text">
-          <span>💻</span> C:\WINDOWS\system32\vincenzoxp.exe - About Me
-        </div>
+        <span>💻 C:\WINDOWS\system32\vincenzoxp.exe</span>
         <div class="xp-controls">
           <div class="xp-btn xp-min">_</div>
           <div class="xp-btn xp-max">□</div>
@@ -469,22 +455,22 @@
       </div>
       <div class="xp-body">
         <h3>Vincenzo Reina — Growth & Product Marketing Strategist</h3>
-        <p>System Profile & Experience Summary:</p>
+        <p>System Profile & Background Summary:</p>
         <ul>
-          <li><strong>Background:</strong> Hybrid experience spanning B2B Enterprise consulting (Mashfrog, B2X) and high-velocity product launches for Deep-Tech & AI scale-ups (Exein).</li>
-          <li><strong>Specialization:</strong> Turning complex technologies (IoT, AI, Kernel Security) into scalable acquisition engines and sharp positioning.</li>
-          <li><strong>Interactive Portfolio:</strong> Explore my interactive Windows XP-style web project bridging code, visual storytelling, and strategy.</li>
+          <li><strong>Background:</strong> Hybrid experience across B2B Enterprise consulting (Mashfrog, B2X) and Deep-Tech & AI scale-ups (Exein).</li>
+          <li><strong>Specialization:</strong> Turning complex IoT, AI & Kernel tech into scalable acquisition engines.</li>
+          <li><strong>Interactive Portfolio:</strong> Windows XP-style interactive project bridging code, strategy & visual storytelling.</li>
         </ul>
         
         <a href="https://vincenzoxp.com" target="_blank" class="xp-button-cta">
-          <span>🚀</span> Open vincenzoxp.com
+          🚀 Open vincenzoxp.com
         </a>
       </div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-      <p>Custom Proposal for Sintropy.ai — Created by Vincenzo Reina</p>
+      <p>Designed for Sintropy.ai — Prepared by Vincenzo Reina</p>
     </footer>
 
   </div>
