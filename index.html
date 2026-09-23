@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sintropy.AI × Vincenzo Reina | GTM Strategy</title>
   <style>
-    /* SINTROPY DARK & GOLD INFOGRAPHIC PALETTE */
     :root {
       --bg-dark: #070B12;             
       --card-bg: rgba(15, 23, 42, 0.75);
@@ -81,7 +80,7 @@
       margin: 0 auto;
     }
 
-    /* SEZIONI KPI STRIP (COMPANY VS ACTION PLAN) */
+    /* KPI STRIPS */
     .kpi-section-title {
       font-size: 0.75rem;
       font-weight: 800;
@@ -133,7 +132,7 @@
       margin-top: 0.4rem;
     }
 
-    /* SEZIONE 1: FUNNEL VISIVO (BOTTLENECK) */
+    /* SECTION TITLES */
     .section-header {
       display: flex;
       align-items: center;
@@ -156,71 +155,94 @@
       color: var(--text-main);
     }
 
-    .funnel-container {
+    /* OPPORTUNITY CARD ISOLATED */
+    .opportunity-card {
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(12px);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* INVERTED BOTTLE FUNNEL SECTION */
+    .bottle-section {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+      margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow: hidden;
     }
 
-    /* VISUAL FUNNEL CSS SIMULATION */
-    .funnel-wrapper {
+    .bottle-container {
+      position: relative;
       width: 100%;
-      max-width: 400px;
-      margin: 1.5rem 0;
+      max-width: 440px;
+      min-height: 280px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
+      margin-top: 1rem;
     }
 
-    .funnel-top-inflow {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 8px;
+    /* INVERTED BOTTLE SVG/CSS MASK BACKGROUND */
+    .bottle-shape {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(234, 179, 8, 0.15) 0%, rgba(234, 179, 8, 0.03) 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 16px;
+      clip-path: polygon(
+        0% 0%, 100% 0%, 
+        100% 45%, 68% 68%, 
+        68% 100%, 32% 100%, 
+        32% 68%, 0% 45%
+      );
+      pointer-events: none;
     }
 
-    .dot-lead {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #64748B;
-      animation: pulseInflow 2s infinite ease-in-out;
+    .bottle-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 1rem 1.5rem;
     }
 
-    .funnel-shape {
-      width: 100%;
-      height: 90px;
-      background: linear-gradient(180deg, rgba(234, 179, 8, 0.2) 0%, rgba(234, 179, 8, 0.05) 100%);
-      clip-path: polygon(0 0, 100% 0, 65% 100%, 35% 100%);
-      border-top: 2px solid var(--gold-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--gold-primary);
-      letter-spacing: 0.05em;
+    .bottle-title {
+      font-size: 0.8rem;
+      font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-primary);
+      margin-bottom: 0.5rem;
     }
 
-    .funnel-bottom-outflow {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 8px;
-      align-items: center;
+    .bottle-text {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-weight: 600;
+      line-height: 1.4;
+      max-width: 340px;
+      margin: 0 auto;
     }
 
-    .dot-converted {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      box-shadow: 0 0 8px var(--gold-primary);
+    /* PARTICLE CANVAS FOR FLOATING DOTS */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* FLIP CARDS (LEVE STRATEGICHE) */
@@ -233,7 +255,7 @@
 
     .flip-card {
       background-color: transparent;
-      height: 280px;
+      height: 310px;
       perspective: 1000px;
       cursor: pointer;
     }
@@ -272,9 +294,21 @@
     }
 
     .flip-card-back {
-      background: rgba(30, 41, 59, 0.95);
+      background: rgba(15, 23, 42, 0.95);
       border-color: var(--gold-primary);
       transform: rotateY(180deg);
+    }
+
+    .time-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--gold-primary);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
     }
 
     .flip-hint {
@@ -324,7 +358,7 @@
       color: var(--gold-primary);
     }
 
-    /* WINDOWS XP SPECIFIC COMPONENT */
+    /* WINDOWS XP COMPONENT */
     .xp-window {
       background: #ECE9D8;
       border: 3px solid #0055EA;
@@ -440,7 +474,7 @@
       h1 { font-size: 1.8rem; }
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
       .levers-container { grid-template-columns: 1fr; }
-      .flip-card { height: 260px; }
+      .flip-card { height: 290px; }
     }
   </style>
 </head>
@@ -489,39 +523,29 @@
       </div>
     </div>
 
-    <!-- SEZIONE 1: THE OPPORTUNITY + FUNNEL VISIVO -->
+    <!-- SEZIONE 1: THE OPPORTUNITY (CARD ISOLATA) -->
     <div class="section-header">
       <span class="section-num">01</span>
       <h2>Where Sintropy Stands Today</h2>
     </div>
 
-    <div class="funnel-container">
-      <p style="text-align: center; font-size: 0.95rem; color: var(--text-muted); max-width: 600px;">
-        The rapid expansion of Sintropy's client base proves the innovative edge of its IoT and AI technology. The €1M Seed funding round provides the exact momentum needed to transition from early traction to scalable enterprise acquisition.
-      </p>
+    <div class="opportunity-card">
+      The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. The successful <strong>€1M Seed funding round</strong> provides the exact momentum needed to transition from early traction to <strong>scalable enterprise acquisition</strong> across Food Retail, QSR, and Grocery chains.
+    </div>
 
-      <!-- VISUAL BOTTLENECK FUNNEL SIMULATION -->
-      <div class="funnel-wrapper">
-        <div class="funnel-top-inflow">
-          <div class="dot-lead"></div>
-          <div class="dot-lead"></div>
-          <div class="dot-lead"></div>
-          <div class="dot-lead"></div>
-          <div class="dot-lead"></div>
-        </div>
-        <div class="funnel-shape">
-          B2B Enterprise Bottleneck
-        </div>
-        <div class="funnel-bottom-outflow">
-          <div class="dot-converted"></div>
-          <div class="dot-converted"></div>
-          <div class="dot-converted"></div>
+    <!-- NUOVA SEZIONE: INVERTED BOTTLE FUNNEL ANIMATO -->
+    <div class="bottle-section">
+      <div class="bottle-container">
+        <div class="bottle-shape"></div>
+        <canvas id="particles-canvas"></canvas>
+        
+        <div class="bottle-content">
+          <div class="bottle-title">Enterprise B2B Bottleneck</div>
+          <div class="bottle-text">
+            Long C-Level decision cycles (Operations, CFOs, ESG Directors) demand immediate trust, proven ROI models, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of Brand Awareness and channel execution, strictly optimized around CAC.
+          </div>
         </div>
       </div>
-
-      <p style="text-align: center; font-size: 0.85rem; color: var(--gold-primary); font-weight: 600;">
-        Long C-Level decision cycles (Operations, CFOs, ESG) demand a structured GTM motion to turn unstructured market interest into predictable enterprise contracts.
-      </p>
     </div>
 
     <!-- SEZIONE 2: 4 STRATEGIC LEVERS (INTERACTIVE FLIP CARDS) -->
@@ -540,19 +564,24 @@
               <span class="lever-badge">PILLAR 1 — ABM</span>
               <h3>Enterprise Expansion</h3>
               <ul>
-                <li><strong>Hyper-Targeted ABM:</strong> Motions built for CFOs, COOs & ESG Leads around the zero-risk ROI model.</li>
+                <li><strong>Hyper-Targeted ABM:</strong> Dedicated motions built for CFOs, COOs & ESG Leads around the zero-risk ROI model.</li>
                 <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click to see Execution Example ↺</div>
+            <div class="flip-hint">Click for Execution Details ↺</div>
           </div>
           <div class="flip-card-back">
             <div>
-              <span class="lever-badge">EXECUTION EXAMPLE</span>
-              <h3>1:1 Outbound & Account Decks</h3>
-              <p style="font-size: 0.82rem; color: #CBD5E1;">Personalized pitch materials tailored for Food Retail C-Levels showing exact payback timelines per single store cluster.</p>
+              <span class="time-label">Timeline: 2/3 Weeks</span>
+              <h3>1:1 Outbound & Vertical Pitch Decks</h3>
+              <p style="font-size: 0.8rem; color: #CBD5E1; margin-bottom: 0.5rem;">Sviluppo di presentazioni commerciali iper-verticali per vertical target:</p>
+              <ul>
+                <li>QSR & Ristorazione Multisito</li>
+                <li>GDO & Retail Alimentare</li>
+                <li>Hospitality & RSA</li>
+              </ul>
             </div>
-            <div class="flip-hint">Click to return ↺</div>
+            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
@@ -565,19 +594,19 @@
               <span class="lever-badge">PILLAR 2 — ENABLEMENT</span>
               <h3>Product Marketing</h3>
               <ul>
-                <li><strong>Translating Complexity:</strong> Converting IoT sensor data into executive ROI metrics.</li>
-                <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical whitepapers for engineers.</li>
+                <li><strong>Translating Complexity:</strong> Converting IoT sensor data into clear executive ROI metrics.</li>
+                <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical documentation.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click to see Execution Example ↺</div>
+            <div class="flip-hint">Click for Execution Details ↺</div>
           </div>
           <div class="flip-card-back">
             <div>
-              <span class="lever-badge">EXECUTION EXAMPLE</span>
-              <h3>Technical vs Commercial Kits</h3>
-              <p style="font-size: 0.82rem; color: #CBD5E1;">Creating 1-pager ROI calculators for CFOs alongside HACCP compliance documentation for Operations Officers.</p>
+              <span class="time-label">Timeline: 2/3 Months</span>
+              <h3>Interactive API Savings Platform</h3>
+              <p style="font-size: 0.8rem; color: #CBD5E1;">Integrazione di un'interfaccia interattiva / Demo Portal che raccoglie API reali (o simulate) divise per industry, per mettere in risalto il risparmio in real-time generato da Sintropy.</p>
             </div>
-            <div class="flip-hint">Click to return ↺</div>
+            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
@@ -593,15 +622,15 @@
                 <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click to see Execution Example ↺</div>
+            <div class="flip-hint">Click for Execution Details ↺</div>
           </div>
           <div class="flip-card-back">
             <div>
-              <span class="lever-badge">EXECUTION EXAMPLE</span>
-              <h3>Case Study Engine</h3>
-              <p style="font-size: 0.82rem; color: #CBD5E1;">High-production video/written customer spotlights demonstrating proven 15-20% utility bill reductions in active QSR chains.</p>
+              <span class="time-label">Timeline: 1/2 Months</span>
+              <h3>Energy Transition Brand Pillar</h3>
+              <p style="font-size: 0.8rem; color: #CBD5E1;">L'Energy Transition diventa un nuovo pillar fondamentale della narrazione, affiancandosi a quello dell'Innovazione Tecnologica e del Risparmio Economico Diretto per il Retail.</p>
             </div>
-            <div class="flip-hint">Click to return ↺</div>
+            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
@@ -615,18 +644,18 @@
               <h3>Automation Engine</h3>
               <ul>
                 <li><strong>CRM Architecture:</strong> Unified lead & funnel tracking.</li>
-                <li><strong>AI-Powered Content:</strong> GenAI agents for automated content & personalized outbound.</li>
+                <li><strong>AI-Powered Operations:</strong> GenAI tools for content scaling & rapid nurturing.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click to see Execution Example ↺</div>
+            <div class="flip-hint">Click for Execution Details ↺</div>
           </div>
           <div class="flip-card-back">
             <div>
-              <span class="lever-badge">EXECUTION EXAMPLE</span>
-              <h3>AI Outbound Stack</h3>
-              <p style="font-size: 0.82rem; color: #CBD5E1;">Deploying automated custom workflows to enrich lead data and send highly-contextualized messaging at zero extra headcount cost.</p>
+              <span class="time-label">Timeline: 2 Months</span>
+              <h3>CRM Optimization & Content AI Stack</h3>
+              <p style="font-size: 0.8rem; color: #CBD5E1;">Audit e ristrutturazione completa del CRM (unificazione dataset e pulizia contatti). Integrazione di agenti AI per abbattere i tempi di creazione contenuti e gestione lead nurturing.</p>
             </div>
-            <div class="flip-hint">Click to return ↺</div>
+            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
@@ -664,6 +693,66 @@
     </footer>
 
   </div>
+
+  <!-- SCRIPT PARTICELLE ED ELEMENTI CASUALI PER BOTTLENECK FUNNEL -->
+  <script>
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const particles = [];
+    const particleCount = 28;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + Math.random() * 50,
+        radius: Math.random() * 3 + 1.5,
+        speedY: Math.random() * 1.2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.7 + 0.2
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.y -= p.speedY;
+        p.x += p.speedX;
+
+        // Convergenza verso il collo
+        const neckY = canvas.height * 0.68;
+        if (p.y < neckY) {
+          const centerX = canvas.width / 2;
+          p.x += (centerX - p.x) * 0.04;
+          p.opacity -= 0.015;
+        }
+
+        // Reset dal basso quando scompare
+        if (p.y < 0 || p.opacity <= 0) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+          p.opacity = Math.random() * 0.7 + 0.2;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(234, 179, 8, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
 
 </body>
 </html>
