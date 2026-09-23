@@ -13,9 +13,7 @@
       --text-main: #F8FAFC;          
       --text-muted: #94A3B8;         
       --gold-primary: #EAB308;       
-      --gold-dark: #CA8A04;          
       --gold-glow: rgba(234, 179, 8, 0.12);
-      --blue-accent: #38BDF8;        
       --border-subtle: rgba(255, 255, 255, 0.08);
     }
 
@@ -42,11 +40,10 @@
       margin: 0 auto;
     }
 
-    /* HEADER INFOGRAFICO */
+    /* HEADER */
     header {
       text-align: center;
       margin-bottom: 2.5rem;
-      animation: fadeIn 0.8s ease-out;
     }
 
     .top-tag {
@@ -84,12 +81,24 @@
       margin: 0 auto;
     }
 
-    /* STRIP STATISTICHE / KPI */
+    /* SEZIONI KPI STRIP (COMPANY VS ACTION PLAN) */
+    .kpi-section-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .kpi-card {
@@ -99,6 +108,11 @@
       border-radius: 14px;
       text-align: center;
       backdrop-filter: blur(12px);
+    }
+
+    .kpi-card.action-card {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(30, 41, 59, 0.4);
     }
 
     .kpi-value {
@@ -119,12 +133,12 @@
       margin-top: 0.4rem;
     }
 
-    /* SEZIONE TIMELINE / STRATEGY FLOW */
+    /* SEZIONE 1: FUNNEL VISIVO (BOTTLENECK) */
     .section-header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 1.25rem;
+      margin: 2.5rem 0 1.25rem 0;
     }
 
     .section-num {
@@ -140,101 +154,177 @@
       font-size: 1.4rem;
       font-weight: 800;
       color: var(--text-main);
-      letter-spacing: -0.02em;
     }
 
-    /* CARD STYLE INFOGRAFICO */
-    .infographic-card {
+    .funnel-container {
       background: var(--card-bg);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 1.75rem;
+      padding: 2rem;
       margin-bottom: 2rem;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .infographic-card:hover {
-      border-color: rgba(234, 179, 8, 0.3);
+    /* VISUAL FUNNEL CSS SIMULATION */
+    .funnel-wrapper {
+      width: 100%;
+      max-width: 400px;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .highlight-box {
-      background: rgba(30, 41, 59, 0.6);
-      border-left: 3px solid var(--gold-primary);
-      padding: 1rem 1.25rem;
-      border-radius: 0 10px 10px 0;
-      margin-top: 1rem;
-      font-size: 0.95rem;
+    .funnel-top-inflow {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
     }
 
-    /* GRID A 2 COLONNE PER LE 4 LEVE (RESPONSIVE MOBILE FIRST) */
+    .dot-lead {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #64748B;
+      animation: pulseInflow 2s infinite ease-in-out;
+    }
+
+    .funnel-shape {
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(234, 179, 8, 0.2) 0%, rgba(234, 179, 8, 0.05) 100%);
+      clip-path: polygon(0 0, 100% 0, 65% 100%, 35% 100%);
+      border-top: 2px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .funnel-bottom-outflow {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+      align-items: center;
+    }
+
+    .dot-converted {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    /* FLIP CARDS (LEVE STRATEGICHE) */
     .levers-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
+      gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
 
-    .lever-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
+    .flip-card {
+      background-color: transparent;
+      height: 280px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 16px;
       padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--card-bg);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      backdrop-filter: blur(12px);
     }
 
-    .lever-box:hover {
-      transform: translateY(-2px);
+    .flip-card-front {
+      border-color: var(--border-subtle);
+    }
+
+    .flip-card-back {
+      background: rgba(30, 41, 59, 0.95);
       border-color: var(--gold-primary);
+      transform: rotateY(180deg);
+    }
+
+    .flip-hint {
+      font-size: 0.7rem;
+      color: var(--gold-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .lever-badge {
-      align-self: flex-start;
       font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
       color: var(--gold-primary);
       background: rgba(234, 179, 8, 0.1);
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      margin-bottom: 0.75rem;
+      width: fit-content;
+      margin-bottom: 0.5rem;
     }
 
-    .lever-box h3 {
+    .flip-card h3 {
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 0.75rem;
-    }
-
-    .lever-box ul {
-      list-style: none;
-    }
-
-    .lever-box li {
-      color: var(--text-muted);
-      font-size: 0.88rem;
       margin-bottom: 0.5rem;
-      padding-left: 1rem;
+    }
+
+    .flip-card ul { list-style: none; }
+
+    .flip-card li {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      padding-left: 0.85rem;
       position: relative;
     }
 
-    .lever-box li::before {
+    .flip-card li::before {
       content: "•";
       position: absolute;
       left: 0;
       color: var(--gold-primary);
-      font-size: 1.1rem;
-      line-height: 1;
     }
 
-    /* ----------------------------------------------------------------- */
-    /* WINDOWS XP COMPONENT (FIXED SPACING & ALIGNMENT)                 */
-    /* ----------------------------------------------------------------- */
+    /* WINDOWS XP SPECIFIC COMPONENT */
     .xp-window {
       background: #ECE9D8;
       border: 3px solid #0055EA;
@@ -296,7 +386,6 @@
       margin-bottom: 0.75rem;
     }
 
-    /* FIX DEFINITIVO SPAZIATURA PUNTI ELENCO WINDOWS XP */
     .xp-body ul {
       list-style: none;
       margin: 0 0 1.2rem 0;
@@ -307,7 +396,7 @@
       font-size: 12px;
       color: #222;
       margin-bottom: 0.4rem;
-      padding-left: 0.85rem; /* Ridotto il padding eccessivo */
+      padding-left: 0.85rem;
       position: relative;
       line-height: 1.4;
     }
@@ -346,14 +435,12 @@
       font-size: 0.8rem;
     }
 
-    /* MOBILE FIRST - BREAKPOINTS */
     @media (max-width: 640px) {
       body { padding: 1.25rem 0.75rem; }
       h1 { font-size: 1.8rem; }
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
       .levers-container { grid-template-columns: 1fr; }
-      .infographic-card { padding: 1.25rem; }
-      .xp-body { padding: 1rem; }
+      .flip-card { height: 260px; }
     }
   </style>
 </head>
@@ -361,14 +448,15 @@
 
   <div class="container">
     
-    <!-- HEADER INFOGRAFICO -->
+    <!-- HEADER -->
     <header>
       <div class="top-tag">Sintropy.AI × Vincenzo Reina</div>
-      <h1>Scaling GTM: <span class="gold">From Seed to Scale</span></h1>
-      <p class="subtitle">A visual B2B growth proposal for Sintropy's next expansion phase.</p>
+      <h1>Scaling GTM: <span class="gold">From Seed to Market Leader</span></h1>
+      <p class="subtitle">A visual B2B growth & positioning proposal for Sintropy's next phase of scale.</p>
     </header>
 
-    <!-- METRICS / STRIP INFOGRAFICA -->
+    <!-- KPI STRIP 1: COMPANY (SINTROPY) -->
+    <div class="kpi-section-title">Company Milestones (Sintropy)</div>
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-value">€1M<span>+</span></div>
@@ -376,74 +464,176 @@
       </div>
       <div class="kpi-card">
         <div class="kpi-value">25<span>%</span></div>
-        <div class="kpi-label">Shared Savings ROI</div>
+        <div class="kpi-label">Shared Savings Model</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">4<span>x</span></div>
-        <div class="kpi-label">Growth Pillars</div>
+        <div class="kpi-value">100<span>+</span></div>
+        <div class="kpi-label">Target Multi-Site Retail</div>
       </div>
     </div>
 
-    <!-- SEZIONE 1: THE OPPORTUNITY -->
+    <!-- KPI STRIP 2: PROPOSED ACTION PLAN -->
+    <div class="kpi-section-title">GTM Action Plan Impact (Proposed)</div>
+    <div class="kpi-grid">
+      <div class="kpi-card action-card">
+        <div class="kpi-value"><span>-</span>30<span>%</span></div>
+        <div class="kpi-label">Target CAC Reduction</div>
+      </div>
+      <div class="kpi-card action-card">
+        <div class="kpi-value">2.5<span>x</span></div>
+        <div class="kpi-label">Sales Cycle Velocity</div>
+      </div>
+      <div class="kpi-card action-card">
+        <div class="kpi-value">4</div>
+        <div class="kpi-label">Scalable GTM Pillars</div>
+      </div>
+    </div>
+
+    <!-- SEZIONE 1: THE OPPORTUNITY + FUNNEL VISIVO -->
     <div class="section-header">
       <span class="section-num">01</span>
       <h2>Where Sintropy Stands Today</h2>
     </div>
 
-    <div class="infographic-card">
-      <p>The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. The successful <strong>€1M Seed funding round</strong> provides the exact runway needed to transition from early traction to <strong>scalable acquisition</strong> across Food Retail, QSR, and Grocery chains.</p>
-      
-      <div class="highlight-box">
-        <strong>The B2B Bottleneck:</strong> Long C-Level decision cycles (Operations, CFOs, ESG) demand a balanced mix of <strong>Brand Awareness and targeted channel execution</strong>, strictly optimized around Customer Acquisition Cost (CAC).
+    <div class="funnel-container">
+      <p style="text-align: center; font-size: 0.95rem; color: var(--text-muted); max-width: 600px;">
+        The rapid expansion of Sintropy's client base proves the innovative edge of its IoT and AI technology. The €1M Seed funding round provides the exact momentum needed to transition from early traction to scalable enterprise acquisition.
+      </p>
+
+      <!-- VISUAL BOTTLENECK FUNNEL SIMULATION -->
+      <div class="funnel-wrapper">
+        <div class="funnel-top-inflow">
+          <div class="dot-lead"></div>
+          <div class="dot-lead"></div>
+          <div class="dot-lead"></div>
+          <div class="dot-lead"></div>
+          <div class="dot-lead"></div>
+        </div>
+        <div class="funnel-shape">
+          B2B Enterprise Bottleneck
+        </div>
+        <div class="funnel-bottom-outflow">
+          <div class="dot-converted"></div>
+          <div class="dot-converted"></div>
+          <div class="dot-converted"></div>
+        </div>
       </div>
+
+      <p style="text-align: center; font-size: 0.85rem; color: var(--gold-primary); font-weight: 600;">
+        Long C-Level decision cycles (Operations, CFOs, ESG) demand a structured GTM motion to turn unstructured market interest into predictable enterprise contracts.
+      </p>
     </div>
 
-    <!-- SEZIONE 2: 4 STRATEGIC LEVERS (GRID INFOGRAFICA) -->
+    <!-- SEZIONE 2: 4 STRATEGIC LEVERS (INTERACTIVE FLIP CARDS) -->
     <div class="section-header">
       <span class="section-num">02</span>
-      <h2>4 Strategic Growth Levers</h2>
+      <h2>4 Strategic Growth Levers (Click to Flip)</h2>
     </div>
 
     <div class="levers-container">
       
-      <div class="lever-box">
-        <span class="lever-badge">PILLAR 1 — ABM</span>
-        <h3>Enterprise Expansion</h3>
-        <ul>
-          <li><strong>Hyper-Targeted ABM:</strong> Dedicated motions for CFOs, COOs & ESG Leads built around the zero-risk ROI model.</li>
-          <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a core brand narrative.</li>
-        </ul>
+      <!-- CARD 1 -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <span class="lever-badge">PILLAR 1 — ABM</span>
+              <h3>Enterprise Expansion</h3>
+              <ul>
+                <li><strong>Hyper-Targeted ABM:</strong> Motions built for CFOs, COOs & ESG Leads around the zero-risk ROI model.</li>
+                <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative.</li>
+              </ul>
+            </div>
+            <div class="flip-hint">Click to see Execution Example ↺</div>
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <span class="lever-badge">EXECUTION EXAMPLE</span>
+              <h3>1:1 Outbound & Account Decks</h3>
+              <p style="font-size: 0.82rem; color: #CBD5E1;">Personalized pitch materials tailored for Food Retail C-Levels showing exact payback timelines per single store cluster.</p>
+            </div>
+            <div class="flip-hint">Click to return ↺</div>
+          </div>
+        </div>
       </div>
 
-      <div class="lever-box">
-        <span class="lever-badge">PILLAR 2 — ENABLEMENT</span>
-        <h3>Product Marketing</h3>
-        <ul>
-          <li><strong>Translating Complexity:</strong> Converting IoT data into clear commercial metrics (e.g., <em>"Average €X savings per store"</em>).</li>
-          <li><strong>Multi-Tier Assets:</strong> Executive decks for CFOs + technical whitepapers for engineers.</li>
-        </ul>
+      <!-- CARD 2 -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <span class="lever-badge">PILLAR 2 — ENABLEMENT</span>
+              <h3>Product Marketing</h3>
+              <ul>
+                <li><strong>Translating Complexity:</strong> Converting IoT sensor data into executive ROI metrics.</li>
+                <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical whitepapers for engineers.</li>
+              </ul>
+            </div>
+            <div class="flip-hint">Click to see Execution Example ↺</div>
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <span class="lever-badge">EXECUTION EXAMPLE</span>
+              <h3>Technical vs Commercial Kits</h3>
+              <p style="font-size: 0.82rem; color: #CBD5E1;">Creating 1-pager ROI calculators for CFOs alongside HACCP compliance documentation for Operations Officers.</p>
+            </div>
+            <div class="flip-hint">Click to return ↺</div>
+          </div>
+        </div>
       </div>
 
-      <div class="lever-box">
-        <span class="lever-badge">PILLAR 3 — BRAND TRUST</span>
-        <h3>Storytelling</h3>
-        <ul>
-          <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
-        </ul>
+      <!-- CARD 3 -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <span class="lever-badge">PILLAR 3 — BRAND TRUST</span>
+              <h3>Storytelling</h3>
+              <ul>
+                <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
+              </ul>
+            </div>
+            <div class="flip-hint">Click to see Execution Example ↺</div>
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <span class="lever-badge">EXECUTION EXAMPLE</span>
+              <h3>Case Study Engine</h3>
+              <p style="font-size: 0.82rem; color: #CBD5E1;">High-production video/written customer spotlights demonstrating proven 15-20% utility bill reductions in active QSR chains.</p>
+            </div>
+            <div class="flip-hint">Click to return ↺</div>
+          </div>
+        </div>
       </div>
 
-      <div class="lever-box">
-        <span class="lever-badge">PILLAR 4 — OPS & AI</span>
-        <h3>Automation Engine</h3>
-        <ul>
-          <li><strong>CRM Funnel Architecture:</strong> Unified acquisition tracking.</li>
-          <li><strong>AI-Powered Content:</strong> GenAI agents for automated content, outbound & rapid lead nurturing.</li>
-        </ul>
+      <!-- CARD 4 -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <span class="lever-badge">PILLAR 4 — OPS & AI</span>
+              <h3>Automation Engine</h3>
+              <ul>
+                <li><strong>CRM Architecture:</strong> Unified lead & funnel tracking.</li>
+                <li><strong>AI-Powered Content:</strong> GenAI agents for automated content & personalized outbound.</li>
+              </ul>
+            </div>
+            <div class="flip-hint">Click to see Execution Example ↺</div>
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <span class="lever-badge">EXECUTION EXAMPLE</span>
+              <h3>AI Outbound Stack</h3>
+              <p style="font-size: 0.82rem; color: #CBD5E1;">Deploying automated custom workflows to enrich lead data and send highly-contextualized messaging at zero extra headcount cost.</p>
+            </div>
+            <div class="flip-hint">Click to return ↺</div>
+          </div>
+        </div>
       </div>
 
     </div>
 
-    <!-- SEZIONE 3: ABOUT ME (DETACHED WINDOWS XP COMPONENT WITH FIXED SPACING) -->
+    <!-- SEZIONE 3: ABOUT ME (WINDOWS XP COMPONENT) -->
     <div class="xp-window">
       <div class="xp-titlebar">
         <span>💻 C:\WINDOWS\system32\vincenzoxp.exe</span>
@@ -455,11 +645,11 @@
       </div>
       <div class="xp-body">
         <h3>Vincenzo Reina — Growth & Product Marketing Strategist</h3>
-        <p>System Profile & Background Summary:</p>
+        <p>System Profile & Core Competencies:</p>
         <ul>
-          <li><strong>Background:</strong> Hybrid experience across B2B Enterprise consulting (Mashfrog, B2X) and Deep-Tech & AI scale-ups (Exein).</li>
-          <li><strong>Specialization:</strong> Turning complex IoT, AI & Kernel tech into scalable acquisition engines.</li>
-          <li><strong>Interactive Portfolio:</strong> Windows XP-style interactive project bridging code, strategy & visual storytelling.</li>
+          <li><strong>Vibecoding:</strong> Fast prototyping, custom web experiences and automated workflows built with modern AI tooling.</li>
+          <li><strong>Strategy:</strong> B2B Enterprise GTM, account positioning, CAC optimization and market expansion.</li>
+          <li><strong>Visual Storytelling:</strong> Turning complex deep-tech/IoT product capabilities into clear, high-converting narratives.</li>
         </ul>
         
         <a href="https://vincenzoxp.com" target="_blank" class="xp-button-cta">
