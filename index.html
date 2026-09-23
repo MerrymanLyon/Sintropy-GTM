@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sintropy.AI × Vincenzo Reina | GTM Strategy</title>
   <style>
-    /* REAL SINTROPY PALETTE & STYLING */
+    /* SINTROPY DARK & GOLD PALETTE */
     :root {
-      --bg-cream: #FAF9F5;            /* Off-white warm cream from Sintropy site */
-      --glow-gold: rgba(234, 179, 8, 0.12); /* Warm yellow glow */
-      --text-blue: #0B192C;           /* Deep dark navy for titles & primary text */
-      --text-olive: #556B2F;          /* Olive green highlight from "riduce i costi energetici" */
-      --text-muted: #4A5568;         /* Subtitle gray */
-      --card-bg: #FFFFFF;             /* Pure white floating cards */
-      --card-border: rgba(11, 25, 44, 0.08);
-      --accent-olive-glow: rgba(85, 107, 47, 0.1);
+      --bg-dark: #070B12;             /* Deep night background */
+      --card-bg: rgba(15, 23, 42, 0.7);/* Dark slate card container */
+      --card-border: rgba(234, 179, 8, 0.15);
+      --text-main: #F8FAFC;          /* Clean white */
+      --text-muted: #94A3B8;         /* Muted gray */
+      --gold-primary: #EAB308;       /* Brand Gold / Warm Yellow */
+      --gold-dark: #CA8A04;          /* Deeper gold tone */
+      --gold-glow: rgba(234, 179, 8, 0.12);
+      --blue-accent: #38BDF8;        /* Cyan-blue for secondary highlights */
     }
 
     * {
@@ -25,13 +26,13 @@
     }
 
     body {
-      background-color: var(--bg-cream);
-      color: var(--text-blue);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       line-height: 1.6;
       padding: 3rem 1.5rem;
       background-image: 
-        radial-gradient(circle at 50% 10%, rgba(243, 232, 200, 0.6) 0%, transparent 60%),
-        radial-gradient(circle at 90% 40%, rgba(218, 230, 208, 0.4) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 40%, rgba(30, 41, 59, 0.5) 0%, transparent 50%);
       min-height: 100vh;
     }
 
@@ -53,12 +54,12 @@
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-olive);
+      color: var(--gold-primary);
       margin-bottom: 1rem;
-      background: var(--accent-olive-glow);
+      background: var(--gold-glow);
       padding: 0.4rem 1rem;
       border-radius: 99px;
-      border: 1px solid rgba(85, 107, 47, 0.2);
+      border: 1px solid rgba(234, 179, 8, 0.3);
     }
 
     h1 {
@@ -66,12 +67,12 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      color: var(--text-blue);
+      color: var(--text-main);
       margin-bottom: 1rem;
     }
 
-    h1 span.olive {
-      color: var(--text-olive);
+    h1 span.gold {
+      color: var(--gold-primary);
     }
 
     .subtitle {
@@ -82,17 +83,18 @@
       margin: 0 auto;
     }
 
-    /* METRICS STRIP - STILE SINTROPY DASHBOARD */
+    /* METRICS STRIP - DARK GOLD */
     .metrics-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 3rem;
-      background: #FFFFFF;
+      background: rgba(15, 23, 42, 0.8);
       padding: 1.5rem 2rem;
       border-radius: 16px;
       border: 1px solid var(--card-border);
-      box-shadow: 0 10px 25px -5px rgba(11, 25, 44, 0.04);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
     }
 
     .metric-item {
@@ -102,12 +104,12 @@
     .metric-number {
       font-size: 2.2rem;
       font-weight: 800;
-      color: var(--text-blue);
+      color: var(--text-main);
       letter-spacing: -0.02em;
     }
 
     .metric-number span {
-      color: var(--text-olive);
+      color: var(--gold-primary);
       font-size: 1.4rem;
     }
 
@@ -126,22 +128,23 @@
       border: 1px solid var(--card-border);
       border-radius: 20px;
       padding: 2.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 30px -10px rgba(11, 25, 44, 0.05);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
       animation: fadeInUp 0.8s ease-out;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -12px rgba(11, 25, 44, 0.1);
-      border-color: rgba(85, 107, 47, 0.3);
+      transform: translateY(-2px);
+      border-color: rgba(234, 179, 8, 0.4);
+      box-shadow: 0 20px 40px -12px rgba(234, 179, 8, 0.1);
     }
 
     .section-num {
       font-size: 0.8rem;
       font-weight: 800;
-      color: var(--text-olive);
+      color: var(--gold-primary);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 0.4rem;
@@ -150,7 +153,7 @@
     h2 {
       font-size: 1.6rem;
       font-weight: 800;
-      color: var(--text-blue);
+      color: var(--text-main);
       margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
@@ -162,13 +165,13 @@
     }
 
     strong {
-      color: var(--text-blue);
+      color: var(--text-main);
       font-weight: 700;
     }
 
     .highlight-box {
-      background: var(--bg-cream);
-      border-left: 4px solid var(--text-olive);
+      background: rgba(30, 41, 59, 0.5);
+      border-left: 4px solid var(--gold-primary);
       padding: 1.25rem 1.5rem;
       border-radius: 0 12px 12px 0;
       margin-top: 1.25rem;
@@ -182,30 +185,30 @@
     }
 
     .lever-card {
-      background: var(--bg-cream);
-      border: 1px solid rgba(11, 25, 44, 0.06);
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 14px;
       padding: 1.5rem;
       transition: all 0.2s ease;
     }
 
     .lever-card:hover {
-      background: #FFFFFF;
-      border-color: var(--text-olive);
+      background: rgba(30, 41, 59, 0.7);
+      border-color: var(--gold-primary);
     }
 
     .lever-card h3 {
       font-size: 1.15rem;
       font-weight: 800;
-      color: var(--text-blue);
+      color: var(--gold-primary);
       margin-bottom: 0.75rem;
     }
 
-    ul {
+    ul.lever-list {
       list-style: none;
     }
 
-    li {
+    ul.lever-list li {
       color: var(--text-muted);
       font-size: 0.98rem;
       margin-bottom: 0.6rem;
@@ -213,43 +216,141 @@
       position: relative;
     }
 
-    li::before {
+    ul.lever-list li::before {
       content: "•";
       position: absolute;
       left: 0.3rem;
-      color: var(--text-olive);
+      color: var(--gold-primary);
       font-size: 1.2rem;
       line-height: 1;
     }
 
-    /* ABOUT ME CTA */
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--text-blue);
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 1rem 2rem;
-      border-radius: 99px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-top: 1rem;
-      box-shadow: 0 4px 15px rgba(11, 25, 44, 0.2);
+    /* ----------------------------------------------------------------- */
+    /* WINDOWS XP SPECIFIC COMPONENT (DETACHED RETRO ELEMENT)           */
+    /* ----------------------------------------------------------------- */
+    .xp-window {
+      background: #ECE9D8; /* Classic XP Gray/Beige */
+      border: 3px solid #0055EA;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px #002B9A;
+      font-family: "Tahoma", "Segoe UI", sans-serif;
+      color: #000;
+      margin-top: 3rem;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out;
     }
 
-    .cta-button:hover {
-      background: var(--text-olive);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(85, 107, 47, 0.3);
+    .xp-titlebar {
+      background: linear-gradient(180deg, #0058EE 0%, #3593FF 4%, #288EFC 6%, #005BFA 8%, #0052E0 14%, #0041CD 50%, #004AE4 86%, #004AE4 90%, #003DD7 92%, #0031B8 100%);
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #FFF;
+      font-weight: bold;
+      font-size: 13px;
+      text-shadow: 1px 1px 1px #000;
+      user-select: none;
+    }
+
+    .xp-title-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .xp-controls {
+      display: flex;
+      gap: 3px;
+    }
+
+    .xp-btn {
+      width: 21px;
+      height: 21px;
+      border-radius: 3px;
+      border: 1px solid #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #FFF;
+      cursor: pointer;
+      box-shadow: inset 0 -1px 2px rgba(0,0,0,0.3);
+    }
+
+    .xp-min { background: linear-gradient(180deg, #3C91FF, #0050D8); }
+    .xp-max { background: linear-gradient(180deg, #3C91FF, #0050D8); }
+    .xp-close { background: linear-gradient(180deg, #E7664B 0%, #C23116 100%); border-color: #FFF; }
+
+    .xp-body {
+      padding: 1.5rem;
+      background: #F8F8F5;
+      font-family: "Tahoma", sans-serif;
+      color: #222;
+    }
+
+    .xp-body h3 {
+      font-size: 16px;
+      color: #0A246A;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .xp-body p {
+      color: #333;
+      font-size: 13px;
+      margin-bottom: 0.8rem;
+    }
+
+    .xp-body ul {
+      list-style: none;
+      margin-bottom: 1.2rem;
+    }
+
+    .xp-body li {
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 0.4rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .xp-body li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: #0A246A;
+      font-weight: bold;
+      font-size: 15px;
+      top: -2px;
+    }
+
+    .xp-button-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(180deg, #FFF 0%, #ECE9D8 100%);
+      border: 1px solid #003C74;
+      border-radius: 3px;
+      padding: 6px 16px;
+      color: #000;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: inset -1px -1px 1px #808080, inset 1px 1px 1px #FFF;
+      cursor: pointer;
+    }
+
+    .xp-button-cta:active {
+      box-shadow: inset 1px 1px 2px #808080;
     }
 
     footer {
       text-align: center;
       margin-top: 4rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(11, 25, 44, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--text-muted);
       font-size: 0.85rem;
     }
@@ -270,7 +371,6 @@
       h1 { font-size: 2.1rem; }
       .metrics-strip { grid-template-columns: 1fr; gap: 1rem; }
       .card { padding: 1.5rem; }
-      .cta-button { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -281,11 +381,11 @@
     <!-- HEADER -->
     <header>
       <span class="top-tag">Sintropy.AI × Vincenzo Reina</span>
-      <h1>Scaling GTM: <span class="olive">From Traction to Market Leadership</span></h1>
+      <h1>Scaling GTM: <span class="gold">From Traction to Market Leadership</span></h1>
       <p class="subtitle">A strategic positioning & growth proposal for Sintropy's next phase of scale.</p>
     </header>
 
-    <!-- METRICS STRIP (STYLE SINTROPY SITE) -->
+    <!-- METRICS STRIP -->
     <div class="metrics-strip">
       <div class="metric-item">
         <div class="metric-number">€1M<span>+</span></div>
@@ -322,7 +422,7 @@
         
         <div class="lever-card">
           <h3>1. ABM & Enterprise Expansion</h3>
-          <ul>
+          <ul class="lever-list">
             <li><strong>Hyper-Targeted Campaigns:</strong> Account-Based Marketing motions for key decision-makers (CFOs, COOs, Sustainability Leads), leveraging the zero-risk ROI model.</li>
             <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative for enterprise retail groups.</li>
           </ul>
@@ -330,7 +430,7 @@
 
         <div class="lever-card">
           <h3>2. Product Marketing & Technical Enablement</h3>
-          <ul>
+          <ul class="lever-list">
             <li><strong>Translating Complexity:</strong> Converting IoT sensor data into clear executive metrics (e.g., <em>"Average €X savings per store / HACCP compliance"</em>).</li>
             <li><strong>Multi-Tier Enablement:</strong> Tailored documentation ranging from high-level executive pitch decks for CFOs to deep-dive technical whitepapers for engineers.</li>
             <li><strong>Vertical Pain-Point Mapping:</strong> Researching industry-specific friction points to shorten sales cycles.</li>
@@ -339,14 +439,14 @@
 
         <div class="lever-card">
           <h3>3. Storytelling & Brand Trust</h3>
-          <ul>
+          <ul class="lever-list">
             <li><strong>High-Impact Narrative:</strong> Shaping Sintropy’s brand story to convey authority, empathy, and vision—moving the market perception from a hardware vendor to a strategic energy transition partner.</li>
           </ul>
         </div>
 
         <div class="lever-card">
           <h3>4. AI-Driven Ops & CRM Integration</h3>
-          <ul>
+          <ul class="lever-list">
             <li><strong>CRM & Funnel Integration:</strong> Designing a unified CRM architecture to track and optimize multi-channel acquisition funnels.</li>
             <li><strong>AI-Powered Content Engine:</strong> Utilizing GenAI agents for automated content creation, hyper-personalized outbound, and rapid lead nurturing.</li>
           </ul>
@@ -355,20 +455,31 @@
       </div>
     </div>
 
-    <!-- SECTION 3: ABOUT ME -->
-    <div class="card">
-      <div class="section-num">03 / BACKGROUND</div>
-      <h2>About Me</h2>
-      <p><strong>Vincenzo Reina</strong> — Growth & Product Marketing Strategist</p>
-      <ul>
-        <li><strong>Background:</strong> Hybrid experience spanning <strong>B2B Enterprise consulting</strong> (Mashfrog, B2X) and high-velocity product launches for <strong>Deep-Tech & AI scale-ups</strong> (Exein).</li>
-        <li><strong>Specialization:</strong> Turning complex technologies (IoT, AI, Kernel Security) into <strong>scalable acquisition engines</strong> and sharp positioning.</li>
-        <li><strong>Interactive Portfolio:</strong> Explore my interactive project bridging code, visual storytelling, and strategy.</li>
-      </ul>
-      
-      <a href="https://vincenzoxp.com" target="_blank" class="cta-button">
-        Explore vincenzoxp.com →
-      </a>
+    <!-- SECTION 3: ABOUT ME (DETACHED WINDOWS XP COMPONENT) -->
+    <div class="xp-window">
+      <div class="xp-titlebar">
+        <div class="xp-title-text">
+          <span>💻</span> C:\WINDOWS\system32\vincenzoxp.exe - About Me
+        </div>
+        <div class="xp-controls">
+          <div class="xp-btn xp-min">_</div>
+          <div class="xp-btn xp-max">□</div>
+          <div class="xp-btn xp-close">✕</div>
+        </div>
+      </div>
+      <div class="xp-body">
+        <h3>Vincenzo Reina — Growth & Product Marketing Strategist</h3>
+        <p>System Profile & Experience Summary:</p>
+        <ul>
+          <li><strong>Background:</strong> Hybrid experience spanning B2B Enterprise consulting (Mashfrog, B2X) and high-velocity product launches for Deep-Tech & AI scale-ups (Exein).</li>
+          <li><strong>Specialization:</strong> Turning complex technologies (IoT, AI, Kernel Security) into scalable acquisition engines and sharp positioning.</li>
+          <li><strong>Interactive Portfolio:</strong> Explore my interactive Windows XP-style web project bridging code, visual storytelling, and strategy.</li>
+        </ul>
+        
+        <a href="https://vincenzoxp.com" target="_blank" class="xp-button-cta">
+          <span>🚀</span> Open vincenzoxp.com
+        </a>
+      </div>
     </div>
 
     <!-- FOOTER -->
