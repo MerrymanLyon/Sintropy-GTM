@@ -13,6 +13,8 @@
       --text-muted: #94A3B8;         
       --gold-primary: #EAB308;       
       --gold-glow: rgba(234, 179, 8, 0.12);
+      --green-primary: #10B981;
+      --green-glow: rgba(16, 185, 129, 0.12);
       --border-subtle: rgba(255, 255, 255, 0.08);
     }
 
@@ -81,23 +83,11 @@
     }
 
     /* KPI STRIPS */
-    .kpi-section-title {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gold-primary);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .kpi-card {
@@ -110,8 +100,8 @@
     }
 
     .kpi-card.action-card {
-      border-color: rgba(255, 255, 255, 0.12);
-      background: rgba(30, 41, 59, 0.4);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(15, 23, 42, 0.6);
     }
 
     .kpi-value {
@@ -121,7 +111,8 @@
       line-height: 1;
     }
 
-    .kpi-value span { color: var(--gold-primary); }
+    .kpi-value span.gold { color: var(--gold-primary); }
+    .kpi-value span.green { color: var(--green-primary); }
 
     .kpi-label {
       font-size: 0.75rem;
@@ -167,7 +158,7 @@
       color: var(--text-muted);
     }
 
-    /* BLOCCO BOTTLENECK GIALLO IN EVIDENZA CON ICONA */
+    /* BLOCCO BOTTLENECK GIALLO IN EVIDENZA CON TESTO LIGHT */
     .bottleneck-highlight-card {
       position: relative;
       background: linear-gradient(135deg, #EAB308 0%, #CA8A04 100%);
@@ -207,9 +198,14 @@
 
     .bottleneck-text {
       font-size: 0.95rem;
-      font-weight: 700;
-      line-height: 1.5;
+      font-weight: 400; /* Light/Normal typography */
+      line-height: 1.55;
       padding-right: 2rem;
+    }
+
+    .bottleneck-text strong {
+      font-weight: 700; /* Grassetto solo sui concetti chiave */
+      color: #0B192C;
     }
 
     /* FLIP CARDS */
@@ -461,36 +457,34 @@
     </header>
 
     <!-- KPI STRIP 1: COMPANY (SINTROPY) -->
-    <div class="kpi-section-title">Company Milestones (Sintropy)</div>
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-value">€1M<span>+</span></div>
+        <div class="kpi-value"><span class="gold">€1M+</span></div>
         <div class="kpi-label">Seed Round Runway</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">25<span>%</span></div>
-        <div class="kpi-label">Shared Savings Model</div>
+        <div class="kpi-value"><span class="gold">+25%</span></div>
+        <div class="kpi-label">Of Savings for First 12 Months</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-value">100<span>+</span></div>
-        <div class="kpi-label">Target Multi-Site Retail</div>
+        <div class="kpi-value"><span class="gold">+100</span></div>
+        <div class="kpi-label">Buildings Under Control</div>
       </div>
     </div>
 
-    <!-- KPI STRIP 2: PROPOSED ACTION PLAN -->
-    <div class="kpi-section-title">GTM Action Plan Impact (Proposed)</div>
-    <div class="kpi-grid">
+    <!-- KPI STRIP 2: PROPOSED ACTION PLAN (GREEN THEME) -->
+    <div class="kpi-grid" style="margin-bottom: 2rem;">
       <div class="kpi-card action-card">
-        <div class="kpi-value"><span>-</span>30<span>%</span></div>
+        <div class="kpi-value"><span class="green">-20%</span></div>
         <div class="kpi-label">Target CAC Reduction</div>
       </div>
       <div class="kpi-card action-card">
-        <div class="kpi-value">2.5<span>x</span></div>
+        <div class="kpi-value"><span class="green">2x</span></div>
         <div class="kpi-label">Sales Cycle Velocity</div>
       </div>
       <div class="kpi-card action-card">
-        <div class="kpi-value">4</div>
-        <div class="kpi-label">Scalable GTM Pillars</div>
+        <div class="kpi-value"><span class="green">4</span></div>
+        <div class="kpi-label">GTM Actions</div>
       </div>
     </div>
 
@@ -504,12 +498,12 @@
       The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. The successful <strong>€1M Seed funding round</strong> provides the exact momentum needed to transition from early traction to <strong>scalable enterprise acquisition</strong> across Food Retail, QSR, and Grocery chains.
     </div>
 
-    <!-- BLOCCO BOTTLENECK GIALLO IN EVIDENZA -->
+    <!-- BLOCCO BOTTLENECK GIALLO CON TESTO LIGHT -->
     <div class="bottleneck-highlight-card">
       <div class="bottleneck-icon">!</div>
       <div class="bottleneck-title">Enterprise B2B Bottleneck</div>
       <div class="bottleneck-text">
-        Long C-Level decision cycles (Operations, CFOs, ESG Directors) demand immediate trust, proven ROI models, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of Brand Awareness and channel execution, strictly optimized around CAC.
+        Long C-Level decision cycles (<strong>Operations, CFOs, ESG Directors</strong>) demand <strong>immediate trust, proven ROI models</strong>, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of <strong>Brand Awareness and channel execution</strong>, strictly optimized around CAC.
       </div>
     </div>
 
