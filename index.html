@@ -167,13 +167,13 @@
       color: var(--text-muted);
     }
 
-    /* INVERTED BOTTLE FUNNEL SECTION */
+    /* INVERTED BOTTLE FUNNEL ANIMATION SECTION */
     .bottle-section {
       position: relative;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
@@ -185,35 +185,53 @@
       position: relative;
       width: 100%;
       max-width: 440px;
-      min-height: 320px;
+      height: 360px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      margin-top: 1rem;
+      justify-content: center;
     }
 
-    /* BOTTLE SHAPE CLIP PATH */
+    /* CANVAS COVERING THE BOTTLE AREA */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Sotto la forma della bottiglia */
+      pointer-events: none;
+    }
+
+    /* SOLID INVERTED BOTTLE MASK */
     .bottle-shape {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(234, 179, 8, 0.12) 0%, rgba(234, 179, 8, 0.02) 100%);
+      top: 40px;
+      bottom: 40px;
+      left: 20px;
+      right: 20px;
+      background: rgba(15, 23, 42, 0.92); /* Copre gli elementi che passano dietro */
       border: 2px solid var(--gold-primary);
       border-radius: 16px;
       clip-path: polygon(
         0% 0%, 100% 0%, 
-        100% 45%, 68% 68%, 
-        68% 100%, 32% 100%, 
-        32% 68%, 0% 45%
+        100% 45%, 62% 65%, 
+        62% 100%, 38% 100%, 
+        38% 65%, 0% 45%
       );
-      pointer-events: none;
+      z-index: 2; /* Sopra gli elementi in discesa */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
     }
 
     .bottle-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
-      padding: 0.5rem 1.5rem;
+      padding: 1rem;
+      max-width: 280px;
     }
 
     .bottle-title {
@@ -226,23 +244,10 @@
     }
 
     .bottle-text {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       color: var(--text-main);
       font-weight: 600;
       line-height: 1.4;
-      max-width: 340px;
-      margin: 0 auto;
-    }
-
-    /* CANVAS FOR TOP-TO-BOTTOM ANIMATION */
-    #particles-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
     }
 
     /* FLIP CARDS */
@@ -289,9 +294,7 @@
       backdrop-filter: blur(12px);
     }
 
-    .flip-card-front {
-      border-color: var(--border-subtle);
-    }
+    .flip-card-front { border-color: var(--border-subtle); }
 
     .flip-card-back {
       background: rgba(15, 23, 42, 0.95);
@@ -469,6 +472,11 @@
       font-size: 0.8rem;
     }
 
+    footer span.gemini {
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
     @media (max-width: 640px) {
       body { padding: 1.25rem 0.75rem; }
       h1 { font-size: 1.8rem; }
@@ -536,13 +544,16 @@
     <!-- INVERTED BOTTLE FUNNEL SECTION -->
     <div class="bottle-section">
       <div class="bottle-container">
-        <div class="bottle-shape"></div>
+        <!-- CANVAS CON ELEMENTI CHE SCENDONO -->
         <canvas id="particles-canvas"></canvas>
-        
-        <div class="bottle-content">
-          <div class="bottle-title">Enterprise B2B Bottleneck</div>
-          <div class="bottle-text">
-            Long C-Level decision cycles (Operations, CFOs, ESG Directors) demand immediate trust, proven ROI models, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of Brand Awareness and channel execution, strictly optimized around CAC.
+
+        <!-- MASCHERA BOTTIGLIA CHE NASCONDE GLI ELEMENTI -->
+        <div class="bottle-shape">
+          <div class="bottle-content">
+            <div class="bottle-title">Enterprise B2B Bottleneck</div>
+            <div class="bottle-text">
+              Long C-Level decision cycles (Operations, CFOs, ESG Directors) demand immediate trust, proven ROI models, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of Brand Awareness and channel execution, strictly optimized around CAC.
+            </div>
           </div>
         </div>
       </div>
@@ -689,12 +700,12 @@
 
     <!-- FOOTER -->
     <footer>
-      <p>Designed for Sintropy.ai — Prepared by Vincenzo Reina</p>
+      <p>Designed for Sintropy.ai — Prepared by Vincenzo Reina | Code generated with <span class="gemini">Gemini</span></p>
     </footer>
 
   </div>
 
-  <!-- SCRIPT PER ANIMAZIONE DALL'ALTO VERSO IL BASSO (TOP TO BOTTOM FUNNEL FLOW) -->
+  <!-- CANVAS ANIMATION ENGINE: GRAVITY FALL & FUNNEL SELECTION -->
   <script>
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
@@ -706,62 +717,74 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const particles = [];
-    const particleCount = 30;
+    // 1. INFLOW ITEMS (MOLTI ELEMENTI CHE SCENDONO DALL'ALTO)
+    const topItems = [];
+    const topItemCount = 12;
+    const speed = 1.2; // Velocità costante di discesa per gravità
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * (canvas.height * 0.4), // Nascono nella parte alta ed ampi
-        radius: Math.random() * 2.5 + 1.5,
-        speedY: Math.random() * 0.8 + 0.4, // Discesa verso il basso
-        opacity: Math.random() * 0.6 + 0.3
+    for (let i = 0; i < topItemCount; i++) {
+      topItems.push({
+        x: Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1),
+        y: Math.random() * -200, // Nascono sopra il canvas fuori vista
+        size: Math.random() * 6 + 6,
+        opacity: Math.random() * 0.5 + 0.4
       });
     }
 
-    function animateParticles() {
+    // 2. OUTFLOW ITEMS (SOLO 3 ELEMENTI CHE ESCONO DAL COLLO STRETTO)
+    const bottomItems = [];
+    const bottomItemCount = 3;
+
+    for (let i = 0; i < bottomItemCount; i++) {
+      bottomItems.push({
+        x: canvas.width / 2, // Centrati al collo della bottiglia
+        y: canvas.height * 0.72 + (i * 45), // Incolonnati in sequenza
+        size: 8,
+        opacity: 0.9
+      });
+    }
+
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const neckY = canvas.height * 0.68; // Inizio del collo di bottiglia
-      const centerX = canvas.width / 2;
+      // SOGLIA DOVE GLI ELEMENTI SCOMPAIONO DIETRO LA BOTTIGLIA
+      const hideYThreshold = canvas.height * 0.15; 
+      const bottomResetY = canvas.height - 10;
 
-      particles.forEach(p => {
-        p.y += p.speedY; // Muove verso il basso
+      // ANIMAZIONE ELEMENTI IN INGRESSO (DALL'ALTO VERSO IL FUNNEL)
+      topItems.forEach(item => {
+        item.y += speed; // Gravità rettilinea
 
-        // Nella parte superiore ampia, convergono gradualmente verso il centro
-        if (p.y < neckY) {
-          const ratio = p.y / neckY;
-          // Riduzione dell'ampiezza orizzontale mano a mano che scendono
-          const currentWidth = (canvas.width * 0.9) * (1 - ratio * 0.35);
-          const minX = centerX - currentWidth / 2;
-          const maxX = centerX + currentWidth / 2;
-
-          if (p.x < minX) p.x += 0.5;
-          if (p.x > maxX) p.x -= 0.5;
-        } 
-        // Quando entrano nel collo stretto, si incolonnano al centro
-        else {
-          p.x += (centerX - p.x) * 0.08; 
-          p.opacity -= 0.015; // Scompaiono usciti dal collo
+        // Scompaiono quando toccano il bordo del funnel
+        if (item.y > hideYThreshold) {
+          item.y = Math.random() * -150 - 20;
+          item.x = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1);
         }
 
-        // Reset in cima quando escono in basso
-        if (p.y > canvas.height || p.opacity <= 0) {
-          p.y = -5;
-          p.x = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1);
-          p.opacity = Math.random() * 0.6 + 0.3;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(234, 179, 8, ${p.opacity})`;
-        ctx.fill();
+        ctx.fillStyle = `rgba(234, 179, 8, ${item.opacity})`;
+        ctx.fillRect(item.x - item.size / 2, item.y - item.size / 2, item.size, item.size);
       });
 
-      requestAnimationFrame(animateParticles);
+      // ANIMAZIONE ELEMENTI IN USCITA (DAL COLLO IN BASSO)
+      bottomItems.forEach(item => {
+        item.y += speed; // Stessa traiettoria rettilinea e velocità
+
+        // Quando arrivano in fondo al box si azzerano e ripartono dal collo
+        if (item.y > bottomResetY) {
+          item.y = canvas.height * 0.72;
+        }
+
+        ctx.fillStyle = `rgba(234, 179, 8, ${item.opacity})`;
+        ctx.shadowColor = 'rgba(234, 179, 8, 0.5)';
+        ctx.shadowBlur = 6;
+        ctx.fillRect(item.x - item.size / 2, item.y - item.size / 2, item.size, item.size);
+        ctx.shadowBlur = 0; // Reset shadow per non appesantire il canvas
+      });
+
+      requestAnimationFrame(animate);
     }
 
-    animateParticles();
+    animate();
   </script>
 
 </body>
