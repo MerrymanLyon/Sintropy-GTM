@@ -167,13 +167,13 @@
       color: var(--text-muted);
     }
 
-    /* INVERTED BOTTLE FUNNEL ANIMATION SECTION */
+    /* INVERTED BOTTLE FUNNEL ANIMATION SECTION (WIDER & CLOSED SHAPE) */
     .bottle-section {
       position: relative;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 2.5rem 1.5rem;
+      padding: 2.5rem 1rem;
       margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
@@ -184,8 +184,8 @@
     .bottle-container {
       position: relative;
       width: 100%;
-      max-width: 440px;
-      height: 360px;
+      max-width: 680px; /* Ampliata la larghezza */
+      height: 380px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -199,55 +199,56 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1; /* Sotto la forma della bottiglia */
+      z-index: 1;
       pointer-events: none;
     }
 
-    /* SOLID INVERTED BOTTLE MASK */
+    /* SOLID CLOSED INVERTED FUNNEL SHAPE */
     .bottle-shape {
       position: absolute;
       top: 40px;
       bottom: 40px;
-      left: 20px;
-      right: 20px;
-      background: rgba(15, 23, 42, 0.92); /* Copre gli elementi che passano dietro */
+      left: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.94);
       border: 2px solid var(--gold-primary);
-      border-radius: 16px;
+      border-radius: 12px;
+      /* Linee rette che uniscono l'imboccatura con le verticali del collo e la chiusura in basso */
       clip-path: polygon(
         0% 0%, 100% 0%, 
-        100% 45%, 62% 65%, 
-        62% 100%, 38% 100%, 
-        38% 65%, 0% 45%
+        100% 40%, 60% 65%, 
+        60% 100%, 40% 100%, 
+        40% 65%, 0% 40%
       );
-      z-index: 2; /* Sopra gli elementi in discesa */
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
+      box-shadow: 0 0 25px rgba(234, 179, 8, 0.15);
     }
 
     .bottle-content {
       position: relative;
       z-index: 3;
       text-align: center;
-      padding: 1rem;
-      max-width: 280px;
+      padding: 1rem 1.5rem;
+      max-width: 480px;
     }
 
     .bottle-title {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--gold-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     .bottle-text {
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       color: var(--text-main);
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     /* FLIP CARDS */
@@ -483,6 +484,7 @@
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
       .levers-container { grid-template-columns: 1fr; }
       .flip-card { height: 290px; }
+      .bottle-container { height: 420px; }
     }
   </style>
 </head>
@@ -547,7 +549,7 @@
         <!-- CANVAS CON ELEMENTI CHE SCENDONO -->
         <canvas id="particles-canvas"></canvas>
 
-        <!-- MASCHERA BOTTIGLIA CHE NASCONDE GLI ELEMENTI -->
+        <!-- MASCHERA BOTTIGLIA CHIUSA E PIÙ LARGA -->
         <div class="bottle-shape">
           <div class="bottle-content">
             <div class="bottle-title">Enterprise B2B Bottleneck</div>
@@ -705,7 +707,7 @@
 
   </div>
 
-  <!-- CANVAS ANIMATION ENGINE: GRAVITY FALL & FUNNEL SELECTION -->
+  <!-- CANVAS ANIMATION ENGINE -->
   <script>
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
@@ -717,59 +719,52 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // 1. INFLOW ITEMS (MOLTI ELEMENTI CHE SCENDONO DALL'ALTO)
     const topItems = [];
-    const topItemCount = 12;
-    const speed = 1.2; // Velocità costante di discesa per gravità
+    const topItemCount = 14;
+    const speed = 1.2;
 
     for (let i = 0; i < topItemCount; i++) {
       topItems.push({
-        x: Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1),
-        y: Math.random() * -200, // Nascono sopra il canvas fuori vista
-        size: Math.random() * 6 + 6,
+        x: Math.random() * (canvas.width * 0.88) + (canvas.width * 0.06),
+        y: Math.random() * -200,
+        size: Math.random() * 5 + 5,
         opacity: Math.random() * 0.5 + 0.4
       });
     }
 
-    // 2. OUTFLOW ITEMS (SOLO 3 ELEMENTI CHE ESCONO DAL COLLO STRETTO)
     const bottomItems = [];
     const bottomItemCount = 3;
 
     for (let i = 0; i < bottomItemCount; i++) {
       bottomItems.push({
-        x: canvas.width / 2, // Centrati al collo della bottiglia
-        y: canvas.height * 0.72 + (i * 45), // Incolonnati in sequenza
+        x: canvas.width / 2,
+        y: canvas.height * 0.72 + (i * 45),
         size: 8,
-        opacity: 0.9
+        opacity: 0.95
       });
     }
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // SOGLIA DOVE GLI ELEMENTI SCOMPAIONO DIETRO LA BOTTIGLIA
       const hideYThreshold = canvas.height * 0.15; 
       const bottomResetY = canvas.height - 10;
 
-      // ANIMAZIONE ELEMENTI IN INGRESSO (DALL'ALTO VERSO IL FUNNEL)
       topItems.forEach(item => {
-        item.y += speed; // Gravità rettilinea
+        item.y += speed;
 
-        // Scompaiono quando toccano il bordo del funnel
         if (item.y > hideYThreshold) {
           item.y = Math.random() * -150 - 20;
-          item.x = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.1);
+          item.x = Math.random() * (canvas.width * 0.88) + (canvas.width * 0.06);
         }
 
         ctx.fillStyle = `rgba(234, 179, 8, ${item.opacity})`;
         ctx.fillRect(item.x - item.size / 2, item.y - item.size / 2, item.size, item.size);
       });
 
-      // ANIMAZIONE ELEMENTI IN USCITA (DAL COLLO IN BASSO)
       bottomItems.forEach(item => {
-        item.y += speed; // Stessa traiettoria rettilinea e velocità
+        item.y += speed;
 
-        // Quando arrivano in fondo al box si azzerano e ripartono dal collo
         if (item.y > bottomResetY) {
           item.y = canvas.height * 0.72;
         }
@@ -778,7 +773,7 @@
         ctx.shadowColor = 'rgba(234, 179, 8, 0.5)';
         ctx.shadowBlur = 6;
         ctx.fillRect(item.x - item.size / 2, item.y - item.size / 2, item.size, item.size);
-        ctx.shadowBlur = 0; // Reset shadow per non appesantire il canvas
+        ctx.shadowBlur = 0;
       });
 
       requestAnimationFrame(animate);
