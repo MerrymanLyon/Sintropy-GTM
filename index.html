@@ -8,13 +8,13 @@
     /* PALETTE SINTROPY DARK TERMINAL */
     :root {
       --bg-dark: #050811;
-      --panel-dark: rgba(13, 20, 36, 0.85);
+      --panel-dark: rgba(13, 20, 36, 0.88);
       --text-main: #F8FAFC;
       --text-muted: #94A3B8;
       --gold-primary: #EAB308;
-      --gold-glow: rgba(234, 179, 8, 0.15);
+      --gold-glow: rgba(234, 179, 8, 0.2);
       --green-primary: #10B981;
-      --border-sharp: rgba(234, 179, 8, 0.25);
+      --border-sharp: rgba(234, 179, 8, 0.3);
       --border-dim: rgba(255, 255, 255, 0.08);
     }
 
@@ -35,7 +35,7 @@
       overflow-x: hidden;
     }
 
-    /* BACKGROUND ASCII CANVAS */
+    /* BACKGROUND ASCII CANVAS VISIBILE */
     #ascii-canvas {
       position: fixed;
       top: 0;
@@ -43,7 +43,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 0;
-      opacity: 0.06;
+      opacity: 0.18; /* Aumentata opacità per renderlo visibile */
       pointer-events: none;
     }
 
@@ -54,7 +54,7 @@
       z-index: 1;
     }
 
-    /* HEADER TERMINAL STYLE */
+    /* HEADER */
     header {
       margin-bottom: 2.5rem;
     }
@@ -112,12 +112,12 @@
       border: 1px solid var(--border-sharp);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       margin-bottom: 2rem;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       overflow: hidden;
     }
 
     .term-header {
-      background: rgba(10, 16, 30, 0.9);
+      background: rgba(10, 16, 30, 0.95);
       padding: 0.6rem 1rem;
       border-bottom: 1px solid var(--border-dim);
       display: flex;
@@ -159,7 +159,7 @@
       border: 1px solid var(--border-dim);
       padding: 1.25rem 1rem;
       text-align: center;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       transition: border-color 0.2s ease;
     }
 
@@ -211,7 +211,7 @@
 
     .bottleneck-body strong { color: var(--gold-primary); }
 
-    /* ACCORDION STYLING (CORRETTO ALLINEAMENTO) */
+    /* ACCORDION STYLING */
     .accordion-list {
       display: flex;
       flex-direction: column;
@@ -224,6 +224,7 @@
       border: 1px solid var(--border-sharp);
       transition: all 0.2s ease;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .accordion-header {
@@ -233,7 +234,7 @@
       justify-content: space-between;
       cursor: pointer;
       user-select: none;
-      background: rgba(13, 20, 36, 0.6);
+      background: rgba(13, 20, 36, 0.7);
     }
 
     .accordion-title-wrap {
@@ -283,7 +284,27 @@
       border-top: 1px solid var(--border-dim);
     }
 
-    /* ALLINEAMENTO ORIZZONTALE TITOLI CORE STRATEGY / EXECUTION PLAN */
+    /* RIGA METADATA TOP PER TIMELINE */
+    .accordion-top-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-timeline {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--gold-primary);
+      padding: 0.2rem 0.6rem;
+      text-transform: uppercase;
+      display: inline-block;
+      width: fit-content;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+
+    /* ALLINEAMENTO ORIZZONTALE TITOLI SULLA STESSA RIGA */
     .accordion-content-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -291,30 +312,43 @@
       align-items: start;
     }
 
-    .column-header {
-      margin-bottom: 0.75rem;
-      min-height: 28px; /* Garantisce che la prima riga di contenuto parta alla stessa altezza */
-      display: flex;
-      align-items: flex-end;
-    }
-
     .column-header h4 {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 800;
       text-transform: uppercase;
       color: var(--gold-primary);
       letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
     }
 
-    .badge-timeline {
-      font-size: 0.65rem;
-      font-weight: 800;
-      color: #000;
-      background: var(--gold-primary);
-      padding: 0.15rem 0.5rem;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 0.3rem;
+    /* TESTO EXECUTION PLAN IN RISALTO */
+    .execution-block p {
+      font-size: 0.95rem; /* Aumentato risalto */
+      color: #FFFFFF;    /* Testo bianco brillante */
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .execution-block ul { list-style: none; }
+    
+    .execution-block li {
+      margin-bottom: 0.55rem;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.92rem; /* Più grande */
+      color: #F1F5F9;     /* Colore ad alto contrasto */
+      font-weight: 500;
+    }
+
+    .execution-block li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      line-height: 1;
     }
 
     .content-block p, .content-block ul {
@@ -329,7 +363,6 @@
       position: relative;
     }
     
-    /* FRECCETTA MINIMALE (SOSTITUITO IL SIMBOLO $) */
     .content-block li::before {
       content: "›";
       position: absolute;
@@ -460,9 +493,9 @@
       body { padding: 1.25rem 0.75rem; }
       h1 { font-size: 1.8rem; }
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .accordion-top-meta { grid-template-columns: 1fr; }
       .accordion-content-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .accordion-header { padding: 1rem; }
-      .column-header { min-height: auto; margin-bottom: 0.5rem; }
     }
   </style>
 </head>
@@ -562,6 +595,14 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
+          <!-- TOP META PER BADGE TIMELINE -->
+          <div class="accordion-top-meta">
+            <div></div> <!-- Spacer colonna sinistra -->
+            <div>
+              <span class="badge-timeline">Timeline: 2-3 Weeks</span>
+            </div>
+          </div>
+          <!-- GRID CON TITOLI PERFETTAMENTE ALLINEATI -->
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -572,12 +613,11 @@
                 <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative.</li>
               </ul>
             </div>
-            <div class="content-block">
-              <div class="column-header" style="flex-direction: column; align-items: flex-start; justify-content: flex-end;">
-                <span class="badge-timeline">Timeline: 2-3 Weeks</span>
+            <div class="content-block execution-block">
+              <div class="column-header">
                 <h4>Execution Plan</h4>
               </div>
-              <p style="margin-bottom: 0.5rem;">Development of highly tailored commercial presentations across core target verticals:</p>
+              <p>Development of highly tailored commercial presentations across core target verticals:</p>
               <ul>
                 <li>QSR & Multi-Site Food Service</li>
                 <li>Mass Retail & Grocery Chains</li>
@@ -598,6 +638,12 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
+          <div class="accordion-top-meta">
+            <div></div>
+            <div>
+              <span class="badge-timeline">Timeline: 2-3 Months</span>
+            </div>
+          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -608,9 +654,8 @@
                 <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical documentation for engineers.</li>
               </ul>
             </div>
-            <div class="content-block">
-              <div class="column-header" style="flex-direction: column; align-items: flex-start; justify-content: flex-end;">
-                <span class="badge-timeline">Timeline: 2-3 Months</span>
+            <div class="content-block execution-block">
+              <div class="column-header">
                 <h4>Execution Plan</h4>
               </div>
               <p>Developing an interactive portal/demo interface integrating real or simulated API data segmented by industry, highlighting real-time cost savings powered by Sintropy.</p>
@@ -629,6 +674,12 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
+          <div class="accordion-top-meta">
+            <div></div>
+            <div>
+              <span class="badge-timeline">Timeline: 1-2 Months</span>
+            </div>
+          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -638,9 +689,8 @@
                 <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
               </ul>
             </div>
-            <div class="content-block">
-              <div class="column-header" style="flex-direction: column; align-items: flex-start; justify-content: flex-end;">
-                <span class="badge-timeline">Timeline: 1-2 Months</span>
+            <div class="content-block execution-block">
+              <div class="column-header">
                 <h4>Execution Plan</h4>
               </div>
               <p>Establishing Energy Transition as a core brand pillar alongside Technological Innovation and Direct Utility Cost Savings for the enterprise retail sector.</p>
@@ -656,9 +706,15 @@
             <span class="accordion-num">04</span>
             <span class="accordion-title">Automation Engine & CRM</span>
           </div>
-          <span class="accordion-icon">+</span>
+          <div class="accordion-icon">+</div>
         </div>
         <div class="accordion-body">
+          <div class="accordion-top-meta">
+            <div></div>
+            <div>
+              <span class="badge-timeline">Timeline: 2 Months</span>
+            </div>
+          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -669,9 +725,8 @@
                 <li><strong>AI Operations:</strong> GenAI tools for content scaling & rapid nurturing.</li>
               </ul>
             </div>
-            <div class="content-block">
-              <div class="column-header" style="flex-direction: column; align-items: flex-start; justify-content: flex-end;">
-                <span class="badge-timeline">Timeline: 2 Months</span>
+            <div class="content-block execution-block">
+              <div class="column-header">
                 <h4>Execution Plan</h4>
               </div>
               <p>Full CRM audit, contact list hygiene, and dataset unification. Integration of GenAI workflows to drastically reduce content creation times and accelerate lead nurturing.</p>
@@ -714,7 +769,7 @@
 
   </div>
 
-  <!-- JAVASCRIPT FOR ACCORDION & ASCII BACKGROUND -->
+  <!-- JAVASCRIPT FOR ACCORDION & VISIBLE ASCII BACKGROUND -->
   <script>
     // ACCORDION INTERACTIVITY
     function toggleAccordion(headerElement) {
@@ -730,7 +785,7 @@
       }
     }
 
-    // ASCII BACKGROUND MATRIX ENGINE
+    // ASCII MATRIX ENGINE
     const canvas = document.getElementById('ascii-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -741,13 +796,13 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const chars = '0123456789ABCDEF<>[]{}/\\*+=:~_';
-    const fontSize = 12;
+    const chars = '0123456789ABCDEF<>[]{}/\\*+=:~_#@$';
+    const fontSize = 13;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
 
     function drawAscii() {
-      ctx.fillStyle = 'rgba(5, 8, 17, 0.1)';
+      ctx.fillStyle = 'rgba(5, 8, 17, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = '#EAB308';
@@ -757,14 +812,14 @@
         const text = chars.charAt(Math.floor(Math.random() * chars.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) {
           drops[i] = 0;
         }
         drops[i]++;
       }
     }
 
-    setInterval(drawAscii, 40);
+    setInterval(drawAscii, 33);
   </script>
 
 </body>
