@@ -5,24 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sintropy.AI × Vincenzo Reina | GTM Strategy</title>
   <style>
+    /* SINTROPY ELEGANT NEO-BRUTALISM PALETTE */
     :root {
-      --bg-dark: #070B12;             
-      --card-bg: rgba(15, 23, 42, 0.75);
-      --card-border: rgba(234, 179, 8, 0.18);
-      --text-main: #F8FAFC;          
-      --text-muted: #94A3B8;         
-      --gold-primary: #EAB308;       
-      --gold-glow: rgba(234, 179, 8, 0.12);
+      --bg-dark: #070B12;
+      --panel-dark: #0F172A;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --gold-primary: #EAB308;
+      --gold-glow: rgba(234, 179, 8, 0.15);
       --green-primary: #10B981;
-      --green-glow: rgba(16, 185, 129, 0.12);
-      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-sharp: #1E293B;
+      --border-gold: #EAB308;
+      --border-green: #10B981;
+      --terminal-bg: #030712;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, monospace;
     }
 
     body {
@@ -30,59 +32,78 @@
       color: var(--text-main);
       line-height: 1.5;
       padding: 2rem 1rem;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08) 0%, transparent 60%),
-        radial-gradient(circle at 80% 40%, rgba(30, 41, 59, 0.5) 0%, transparent 50%);
       min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.05) 0%, transparent 50%),
+        linear-gradient(var(--border-sharp) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-sharp) 1px, transparent 1px);
+      background-size: 100% 100%, 30px 30px, 30px 30px;
     }
 
     .container {
-      max-width: 860px;
+      max-width: 820px;
       margin: 0 auto;
     }
 
-    /* HEADER */
+    /* HEADER NEO-BRUTALIST BADGE */
     header {
-      text-align: center;
       margin-bottom: 2.5rem;
     }
 
-    .top-tag {
-      display: inline-flex;
+    .header-badge-row {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
       gap: 0.5rem;
+    }
+
+    .badge-brutal {
+      background: var(--gold-primary);
+      color: #000;
+      font-weight: 800;
       font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      padding: 0.3rem 0.8rem;
       text-transform: uppercase;
-      color: var(--gold-primary);
-      margin-bottom: 0.8rem;
-      background: var(--gold-glow);
-      padding: 0.4rem 1rem;
-      border-radius: 99px;
-      border: 1px solid rgba(234, 179, 8, 0.3);
+      letter-spacing: 0.05em;
+      border: 2px solid #000;
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .badge-sub {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
+      font-size: 2.5rem;
+      font-weight: 900;
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      line-height: 1.1;
       color: var(--text-main);
       margin-bottom: 0.8rem;
+      text-transform: uppercase;
     }
 
-    h1 span.gold { color: var(--gold-primary); }
+    h1 span.gold {
+      color: var(--gold-primary);
+    }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 400;
-      max-width: 650px;
-      margin: 0 auto;
     }
 
-    /* KPI STRIPS */
+    /* KPI METRICS GRID */
+    .kpi-section {
+      margin-bottom: 2.5rem;
+    }
+
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -90,241 +111,249 @@
       margin-bottom: 1rem;
     }
 
-    .kpi-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    .kpi-box {
+      background: var(--panel-dark);
+      border: 2px solid var(--border-sharp);
       padding: 1.25rem 1rem;
-      border-radius: 14px;
-      text-align: center;
-      backdrop-filter: blur(12px);
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .kpi-card.action-card {
-      border-color: rgba(16, 185, 129, 0.3);
-      background: rgba(15, 23, 42, 0.6);
+    .kpi-box:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
     }
 
-    .kpi-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-main);
+    .kpi-box.gold-border { border-color: rgba(234, 179, 8, 0.4); }
+    .kpi-box.green-border { border-color: rgba(16, 185, 129, 0.4); }
+
+    .kpi-num {
+      font-size: 2rem;
+      font-weight: 900;
       line-height: 1;
+      margin-bottom: 0.3rem;
     }
 
-    .kpi-value span.gold { color: var(--gold-primary); }
-    .kpi-value span.green { color: var(--green-primary); }
+    .kpi-num.gold { color: var(--gold-primary); }
+    .kpi-num.green { color: var(--green-primary); }
 
-    .kpi-label {
+    .kpi-lbl {
       font-size: 0.75rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-top: 0.4rem;
     }
 
-    /* SECTION TITLES */
-    .section-header {
+    /* OPPORTUNITY & TERMINAL BOTTLENECK */
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      margin: 2.5rem 0 1.25rem 0;
+      gap: 0.5rem;
     }
 
-    .section-num {
-      background: var(--gold-primary);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
+    .opportunity-card {
+      background: var(--panel-dark);
+      border: 2px solid var(--border-sharp);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
     }
 
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 800;
+    .opportunity-card strong {
       color: var(--text-main);
     }
 
-    /* OPPORTUNITY CARD */
-    .opportunity-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(12px);
-      font-size: 0.95rem;
+    /* TERMINAL BOTTLENECK COMPONENT */
+    .terminal-box {
+      background: var(--terminal-bg);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 5px 5px 0px rgba(234, 179, 8, 0.2);
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      background: #111827;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--border-sharp);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+
+    .terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .terminal-prompt {
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+
+    .terminal-dim {
       color: var(--text-muted);
     }
 
-    /* BLOCCO BOTTLENECK GIALLO IN EVIDENZA CON TESTO LIGHT */
-    .bottleneck-highlight-card {
-      position: relative;
-      background: linear-gradient(135deg, #EAB308 0%, #CA8A04 100%);
-      border-radius: 16px;
-      padding: 1.75rem 2rem;
-      margin-bottom: 2.5rem;
-      color: #0B192C;
-      box-shadow: 0 10px 30px rgba(234, 179, 8, 0.25);
-    }
-
-    .bottleneck-icon {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      width: 32px;
-      height: 32px;
-      background: #0B192C;
-      color: #EAB308;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.1rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .bottleneck-title {
-      font-size: 0.85rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #0B192C;
-      margin-bottom: 0.5rem;
-      opacity: 0.9;
-    }
-
-    .bottleneck-text {
-      font-size: 0.95rem;
-      font-weight: 400; /* Light/Normal typography */
-      line-height: 1.55;
-      padding-right: 2rem;
-    }
-
-    .bottleneck-text strong {
-      font-weight: 700; /* Grassetto solo sui concetti chiave */
-      color: #0B192C;
-    }
-
-    /* FLIP CARDS */
-    .levers-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .flip-card {
-      background-color: transparent;
-      height: 310px;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: left;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-
-    .flip-card.flipped .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid var(--border-subtle);
-      background: var(--card-bg);
+    /* ACCORDION GTM LEVERS */
+    .accordion-list {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: blur(12px);
+      gap: 1rem;
+      margin-bottom: 3rem;
     }
 
-    .flip-card-front { border-color: var(--border-subtle); }
+    .accordion-item {
+      background: var(--panel-dark);
+      border: 2px solid var(--border-sharp);
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
 
-    .flip-card-back {
-      background: rgba(15, 23, 42, 0.95);
+    .accordion-item.active {
       border-color: var(--gold-primary);
-      transform: rotateY(180deg);
+      box-shadow: 6px 6px 0px var(--gold-glow);
     }
 
-    .time-label {
+    .accordion-header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .accordion-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .accordion-num {
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: var(--gold-primary);
+      background: rgba(234, 179, 8, 0.1);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+
+    .accordion-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .accordion-icon {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--gold-primary);
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+      padding: 0 1.5rem;
+    }
+
+    .accordion-item.active .accordion-body {
+      max-height: 500px;
+      transition: max-height 0.35s ease-in-out;
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      border-top: 1px dashed var(--border-sharp);
+    }
+
+    .accordion-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .content-block h4 {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .content-block p, .content-block ul {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .content-block ul { list-style: none; }
+    .content-block li {
+      margin-bottom: 0.4rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .content-block li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--gold-primary);
+      font-weight: bold;
+    }
+
+    .badge-timeline {
       display: inline-block;
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: #000;
       background: var(--gold-primary);
       padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
       text-transform: uppercase;
-    }
-
-    .flip-hint {
-      font-size: 0.7rem;
-      color: var(--gold-primary);
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .lever-badge {
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--gold-primary);
-      background: rgba(234, 179, 8, 0.1);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      width: fit-content;
       margin-bottom: 0.5rem;
-    }
-
-    .flip-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 0.5rem;
-    }
-
-    .flip-card ul { list-style: none; }
-
-    .flip-card li {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-bottom: 0.4rem;
-      padding-left: 0.85rem;
-      position: relative;
-    }
-
-    .flip-card li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--gold-primary);
     }
 
     /* WINDOWS XP COMPONENT */
     .xp-window {
       background: #ECE9D8;
       border: 3px solid #0055EA;
-      border-radius: 8px 8px 0 0;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.6);
       font-family: "Tahoma", sans-serif;
       color: #000;
       margin-top: 2.5rem;
@@ -333,7 +362,7 @@
 
     .xp-titlebar {
       background: linear-gradient(180deg, #0058EE 0%, #3593FF 4%, #005BFA 8%, #004AE4 90%, #0031B8 100%);
-      padding: 5px 8px;
+      padding: 6px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -425,7 +454,7 @@
       text-align: center;
       margin-top: 3rem;
       padding-top: 1.5rem;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-sharp);
       color: var(--text-muted);
       font-size: 0.8rem;
     }
@@ -435,13 +464,14 @@
       font-weight: 700;
     }
 
+    /* RESPONSIVE BREAKPOINTS */
     @media (max-width: 640px) {
       body { padding: 1.25rem 0.75rem; }
       h1 { font-size: 1.8rem; }
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-      .levers-container { grid-template-columns: 1fr; }
-      .flip-card { height: 290px; }
-      .bottleneck-highlight-card { padding: 1.25rem 1.5rem; }
+      .accordion-content-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .accordion-header { padding: 1rem; }
+      .accordion-item.active .accordion-body { padding: 0 1rem 1rem 1rem; }
     }
   </style>
 </head>
@@ -451,170 +481,186 @@
     
     <!-- HEADER -->
     <header>
-      <div class="top-tag">Sintropy.AI × Vincenzo Reina</div>
-      <h1>Scaling GTM: <span class="gold">From Seed to Market Leader</span></h1>
-      <p class="subtitle">A visual B2B growth & positioning proposal for Sintropy's next phase of scale.</p>
+      <div class="header-badge-row">
+        <span class="badge-brutal">SINTROPY.AI × VINCENZO REINA</span>
+        <span class="badge-sub">GTM STRATEGY PROPOSAL</span>
+      </div>
+      <h1>SCALING GTM: <span class="gold">FROM SEED TO MARKET LEADER</span></h1>
+      <p class="subtitle">A strategic positioning & growth framework for Sintropy's next expansion phase.</p>
     </header>
 
-    <!-- KPI STRIP 1: COMPANY (SINTROPY) -->
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-value"><span class="gold">€1M+</span></div>
-        <div class="kpi-label">Seed Round Runway</div>
+    <!-- KPI METRICS SECTION -->
+    <div class="kpi-section">
+      <!-- ROW 1: COMPANY MILESTONES -->
+      <div class="kpi-grid">
+        <div class="kpi-box gold-border">
+          <div class="kpi-num gold">€1M+</div>
+          <div class="kpi-lbl">Seed Round Runway</div>
+        </div>
+        <div class="kpi-box gold-border">
+          <div class="kpi-num gold">+25%</div>
+          <div class="kpi-lbl">Savings First 12 Months</div>
+        </div>
+        <div class="kpi-box gold-border">
+          <div class="kpi-num gold">+100</div>
+          <div class="kpi-lbl">Buildings Under Control</div>
+        </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-value"><span class="gold">+25%</span></div>
-        <div class="kpi-label">Of Savings for First 12 Months</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-value"><span class="gold">+100</span></div>
-        <div class="kpi-label">Buildings Under Control</div>
-      </div>
-    </div>
 
-    <!-- KPI STRIP 2: PROPOSED ACTION PLAN (GREEN THEME) -->
-    <div class="kpi-grid" style="margin-bottom: 2rem;">
-      <div class="kpi-card action-card">
-        <div class="kpi-value"><span class="green">-20%</span></div>
-        <div class="kpi-label">Target CAC Reduction</div>
-      </div>
-      <div class="kpi-card action-card">
-        <div class="kpi-value"><span class="green">2x</span></div>
-        <div class="kpi-label">Sales Cycle Velocity</div>
-      </div>
-      <div class="kpi-card action-card">
-        <div class="kpi-value"><span class="green">4</span></div>
-        <div class="kpi-label">GTM Actions</div>
+      <!-- ROW 2: PROPOSED GTM ACTION IMPACT -->
+      <div class="kpi-grid">
+        <div class="kpi-box green-border">
+          <div class="kpi-num green">-20%</div>
+          <div class="kpi-lbl">Target CAC Reduction</div>
+        </div>
+        <div class="kpi-box green-border">
+          <div class="kpi-num green">2x</div>
+          <div class="kpi-lbl">Sales Cycle Velocity</div>
+        </div>
+        <div class="kpi-box green-border">
+          <div class="kpi-num green">4</div>
+          <div class="kpi-lbl">GTM Actions</div>
+        </div>
       </div>
     </div>
 
     <!-- SEZIONE 1: THE OPPORTUNITY -->
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>Where Sintropy Stands Today</h2>
-    </div>
-
+    <div class="section-title">01 // OPPORTUNITY ANALYSIS</div>
+    
     <div class="opportunity-card">
       The rapid expansion of Sintropy's client base proves the <strong>innovative edge of its IoT and AI technology</strong>. The successful <strong>€1M Seed funding round</strong> provides the exact momentum needed to transition from early traction to <strong>scalable enterprise acquisition</strong> across Food Retail, QSR, and Grocery chains.
     </div>
 
-    <!-- BLOCCO BOTTLENECK GIALLO CON TESTO LIGHT -->
-    <div class="bottleneck-highlight-card">
-      <div class="bottleneck-icon">!</div>
-      <div class="bottleneck-title">Enterprise B2B Bottleneck</div>
-      <div class="bottleneck-text">
-        Long C-Level decision cycles (<strong>Operations, CFOs, ESG Directors</strong>) demand <strong>immediate trust, proven ROI models</strong>, and clear sustainability narratives. Overcoming this bottleneck requires a balanced mix of <strong>Brand Awareness and channel execution</strong>, strictly optimized around CAC.
+    <!-- TERMINAL BOTTLENECK COMPONENT -->
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span>sys_diagnostics --target="enterprise_sales"</span>
+      </div>
+      <div class="terminal-body">
+        <p><span class="terminal-prompt">$</span> status: <span style="color:#EF4444; font-weight:bold;">ENTERPRISE B2B BOTTLENECK DETECTED</span></p>
+        <p><span class="terminal-prompt">$</span> analysis: Long C-Level decision cycles (<strong>Operations, CFOs, ESG Directors</strong>) demand immediate trust, proven ROI models, and clear sustainability narratives.</p>
+        <p><span class="terminal-prompt">$</span> resolution: Overcoming this bottleneck requires a balanced mix of <strong>Brand Awareness and channel execution</strong>, strictly optimized around Customer Acquisition Cost (CAC).</p>
       </div>
     </div>
 
-    <!-- SEZIONE 2: 4 STRATEGIC LEVERS -->
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>4 Strategic Growth Levers (Click to Flip)</h2>
-    </div>
+    <!-- SEZIONE 2: ACCORDION GTM LEVERS -->
+    <div class="section-title">02 // 4 STRATEGIC GROWTH LEVERS</div>
 
-    <div class="levers-container">
+    <div class="accordion-list">
       
-      <!-- CARD 1 -->
-      <div class="flip-card" onclick="this.classList.toggle('flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div>
-              <span class="lever-badge">PILLAR 1 — ABM</span>
-              <h3>Enterprise Expansion</h3>
+      <!-- ITEM 1 -->
+      <div class="accordion-item active">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title-wrap">
+            <span class="accordion-num">01</span>
+            <span class="accordion-title">ABM & Enterprise Expansion</span>
+          </div>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content-grid">
+            <div class="content-block">
+              <h4>Core Strategy</h4>
               <ul>
-                <li><strong>Hyper-Targeted ABM:</strong> Dedicated motions built for CFOs, COOs & ESG Leads around the zero-risk ROI model.</li>
+                <li><strong>Hyper-Targeted ABM:</strong> Motions built for CFOs, COOs & ESG Leads around the zero-risk ROI model.</li>
                 <li><strong>ESG Positioning:</strong> Elevating energy efficiency into a strategic brand narrative.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click for Execution Details ↺</div>
-          </div>
-          <div class="flip-card-back">
-            <div>
-              <span class="time-label">Timeline: 2-3 Weeks</span>
-              <h3>1:1 Outbound & Vertical Decks</h3>
-              <p style="font-size: 0.8rem; color: #CBD5E1; margin-bottom: 0.5rem;">Development of highly tailored commercial presentations across core target verticals:</p>
+            <div class="content-block">
+              <span class="badge-timeline">Timeline: 2-3 Weeks</span>
+              <h4>Execution Plan</h4>
+              <p>Development of highly tailored commercial presentations across core target verticals:</p>
               <ul>
                 <li>QSR & Multi-Site Food Service</li>
                 <li>Mass Retail & Grocery Chains</li>
                 <li>Hospitality & Care Facilities</li>
               </ul>
             </div>
-            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
 
-      <!-- CARD 2 -->
-      <div class="flip-card" onclick="this.classList.toggle('flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div>
-              <span class="lever-badge">PILLAR 2 — ENABLEMENT</span>
-              <h3>Product Marketing</h3>
+      <!-- ITEM 2 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title-wrap">
+            <span class="accordion-num">02</span>
+            <span class="accordion-title">Product Marketing & Enablement</span>
+          </div>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content-grid">
+            <div class="content-block">
+              <h4>Core Strategy</h4>
               <ul>
                 <li><strong>Translating Complexity:</strong> Converting IoT sensor data into clear executive ROI metrics.</li>
-                <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical documentation.</li>
+                <li><strong>Multi-Tier Enablement:</strong> CFO executive decks + deep technical documentation for engineers.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click for Execution Details ↺</div>
-          </div>
-          <div class="flip-card-back">
-            <div>
-              <span class="time-label">Timeline: 2-3 Months</span>
-              <h3>Interactive API Savings Platform</h3>
-              <p style="font-size: 0.8rem; color: #CBD5E1;">Developing an interactive portal/demo interface that integrates real (or simulated) API data segmented by industry, highlighting real-time cost savings powered by Sintropy.</p>
+            <div class="content-block">
+              <span class="badge-timeline">Timeline: 2-3 Months</span>
+              <h4>Execution Plan</h4>
+              <p>Developing an interactive portal/demo interface integrating real or simulated API data segmented by industry, highlighting real-time cost savings powered by Sintropy.</p>
             </div>
-            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
 
-      <!-- CARD 3 -->
-      <div class="flip-card" onclick="this.classList.toggle('flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div>
-              <span class="lever-badge">PILLAR 3 — BRAND TRUST</span>
-              <h3>Storytelling</h3>
+      <!-- ITEM 3 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title-wrap">
+            <span class="accordion-num">03</span>
+            <span class="accordion-title">Storytelling & Brand Trust</span>
+          </div>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content-grid">
+            <div class="content-block">
+              <h4>Core Strategy</h4>
               <ul>
                 <li><strong>High-Impact Narrative:</strong> Positioning Sintropy as a strategic energy transition partner rather than a hardware vendor.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click for Execution Details ↺</div>
-          </div>
-          <div class="flip-card-back">
-            <div>
-              <span class="time-label">Timeline: 1-2 Months</span>
-              <h3>Energy Transition Brand Pillar</h3>
-              <p style="font-size: 0.8rem; color: #CBD5E1;">Establishing Energy Transition as a core brand pillar alongside Technological Innovation and Direct Utility Cost Savings for the enterprise retail sector.</p>
+            <div class="content-block">
+              <span class="badge-timeline">Timeline: 1-2 Months</span>
+              <h4>Execution Plan</h4>
+              <p>Establishing Energy Transition as a core brand pillar alongside Technological Innovation and Direct Utility Cost Savings for the enterprise retail sector.</p>
             </div>
-            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
 
-      <!-- CARD 4 -->
-      <div class="flip-card" onclick="this.classList.toggle('flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div>
-              <span class="lever-badge">PILLAR 4 — OPS & AI</span>
-              <h3>Automation Engine</h3>
+      <!-- ITEM 4 -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-title-wrap">
+            <span class="accordion-num">04</span>
+            <span class="accordion-title">Automation Engine & CRM</span>
+          </div>
+          <div class="accordion-icon">+</div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-content-grid">
+            <div class="content-block">
+              <h4>Core Strategy</h4>
               <ul>
                 <li><strong>CRM Architecture:</strong> Unified lead & funnel tracking.</li>
-                <li><strong>AI-Powered Operations:</strong> GenAI tools for content scaling & rapid nurturing.</li>
+                <li><strong>AI Operations:</strong> GenAI tools for content scaling & rapid nurturing.</li>
               </ul>
             </div>
-            <div class="flip-hint">Click for Execution Details ↺</div>
-          </div>
-          <div class="flip-card-back">
-            <div>
-              <span class="time-label">Timeline: 2 Months</span>
-              <h3>CRM Optimization & Content AI Stack</h3>
-              <p style="font-size: 0.8rem; color: #CBD5E1;">Full CRM audit, contact list hygiene, and dataset unification. Integration of GenAI workflows to drastically reduce content creation times and accelerate lead nurturing.</p>
+            <div class="content-block">
+              <span class="badge-timeline">Timeline: 2 Months</span>
+              <h4>Execution Plan</h4>
+              <p>Full CRM audit, contact list hygiene, and dataset unification. Integration of GenAI workflows to drastically reduce content creation times and accelerate lead nurturing.</p>
             </div>
-            <div class="flip-hint">Click to Return ↺</div>
           </div>
         </div>
       </div>
@@ -652,6 +698,24 @@
     </footer>
 
   </div>
+
+  <!-- JAVASCRIPT FOR ACCORDION INTERACTIVITY -->
+  <script>
+    function toggleAccordion(headerElement) {
+      const item = headerElement.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Close all items
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Toggle current item
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+  </script>
 
 </body>
 </html>
