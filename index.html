@@ -35,7 +35,7 @@
       overflow-x: hidden;
     }
 
-    /* BACKGROUND ASCII CANVAS VISIBILE */
+    /* BACKGROUND HACKER TERMINAL CANVAS */
     #ascii-canvas {
       position: fixed;
       top: 0;
@@ -43,7 +43,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 0;
-      opacity: 0.18; /* Aumentata opacità per renderlo visibile */
+      opacity: 0.16;
       pointer-events: none;
     }
 
@@ -284,26 +284,6 @@
       border-top: 1px solid var(--border-dim);
     }
 
-    /* RIGA METADATA TOP PER TIMELINE */
-    .accordion-top-meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .badge-timeline {
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: #000;
-      background: var(--gold-primary);
-      padding: 0.2rem 0.6rem;
-      text-transform: uppercase;
-      display: inline-block;
-      width: fit-content;
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
-    }
-
     /* ALLINEAMENTO ORIZZONTALE TITOLI SULLA STESSA RIGA */
     .accordion-content-grid {
       display: grid;
@@ -323,21 +303,24 @@
 
     /* TESTO EXECUTION PLAN IN RISALTO */
     .execution-block p {
-      font-size: 0.95rem; /* Aumentato risalto */
-      color: #FFFFFF;    /* Testo bianco brillante */
+      font-size: 0.95rem;
+      color: #FFFFFF;
       font-weight: 600;
       line-height: 1.5;
       margin-bottom: 0.75rem;
     }
 
-    .execution-block ul { list-style: none; }
+    .execution-block ul { 
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
     
     .execution-block li {
       margin-bottom: 0.55rem;
       padding-left: 1.2rem;
       position: relative;
-      font-size: 0.92rem; /* Più grande */
-      color: #F1F5F9;     /* Colore ad alto contrasto */
+      font-size: 0.92rem;
+      color: #F1F5F9;
       font-weight: 500;
     }
 
@@ -349,6 +332,19 @@
       font-weight: bold;
       font-size: 1.2rem;
       line-height: 1;
+    }
+
+    /* TIMELINE BADGE IN FONDO AL TESTO */
+    .badge-timeline {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--gold-primary);
+      padding: 0.2rem 0.65rem;
+      text-transform: uppercase;
+      display: inline-block;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+      margin-top: 0.5rem;
     }
 
     .content-block p, .content-block ul {
@@ -493,7 +489,6 @@
       body { padding: 1.25rem 0.75rem; }
       h1 { font-size: 1.8rem; }
       .kpi-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-      .accordion-top-meta { grid-template-columns: 1fr; }
       .accordion-content-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .accordion-header { padding: 1rem; }
     }
@@ -501,7 +496,7 @@
 </head>
 <body>
 
-  <!-- BACKGROUND ASCII ANIMATED CANVAS -->
+  <!-- BACKGROUND HACKER TERMINAL ANIMATED CANVAS -->
   <canvas id="ascii-canvas"></canvas>
 
   <div class="container">
@@ -595,14 +590,6 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
-          <!-- TOP META PER BADGE TIMELINE -->
-          <div class="accordion-top-meta">
-            <div></div> <!-- Spacer colonna sinistra -->
-            <div>
-              <span class="badge-timeline">Timeline: 2-3 Weeks</span>
-            </div>
-          </div>
-          <!-- GRID CON TITOLI PERFETTAMENTE ALLINEATI -->
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -623,6 +610,7 @@
                 <li>Mass Retail & Grocery Chains</li>
                 <li>Hospitality & Care Facilities</li>
               </ul>
+              <span class="badge-timeline">Timeline: 2-3 Weeks</span>
             </div>
           </div>
         </div>
@@ -638,12 +626,6 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
-          <div class="accordion-top-meta">
-            <div></div>
-            <div>
-              <span class="badge-timeline">Timeline: 2-3 Months</span>
-            </div>
-          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -659,6 +641,7 @@
                 <h4>Execution Plan</h4>
               </div>
               <p>Developing an interactive portal/demo interface integrating real or simulated API data segmented by industry, highlighting real-time cost savings powered by Sintropy.</p>
+              <span class="badge-timeline">Timeline: 2-3 Months</span>
             </div>
           </div>
         </div>
@@ -674,12 +657,6 @@
           <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
-          <div class="accordion-top-meta">
-            <div></div>
-            <div>
-              <span class="badge-timeline">Timeline: 1-2 Months</span>
-            </div>
-          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -694,6 +671,7 @@
                 <h4>Execution Plan</h4>
               </div>
               <p>Establishing Energy Transition as a core brand pillar alongside Technological Innovation and Direct Utility Cost Savings for the enterprise retail sector.</p>
+              <span class="badge-timeline">Timeline: 1-2 Months</span>
             </div>
           </div>
         </div>
@@ -706,15 +684,9 @@
             <span class="accordion-num">04</span>
             <span class="accordion-title">Automation Engine & CRM</span>
           </div>
-          <div class="accordion-icon">+</div>
+          <span class="accordion-icon">+</span>
         </div>
         <div class="accordion-body">
-          <div class="accordion-top-meta">
-            <div></div>
-            <div>
-              <span class="badge-timeline">Timeline: 2 Months</span>
-            </div>
-          </div>
           <div class="accordion-content-grid">
             <div class="content-block">
               <div class="column-header">
@@ -730,6 +702,7 @@
                 <h4>Execution Plan</h4>
               </div>
               <p>Full CRM audit, contact list hygiene, and dataset unification. Integration of GenAI workflows to drastically reduce content creation times and accelerate lead nurturing.</p>
+              <span class="badge-timeline">Timeline: 2 Months</span>
             </div>
           </div>
         </div>
@@ -769,7 +742,7 @@
 
   </div>
 
-  <!-- JAVASCRIPT FOR ACCORDION & VISIBLE ASCII BACKGROUND -->
+  <!-- JAVASCRIPT FOR ACCORDION & HACKER TERMINAL BACKGROUND -->
   <script>
     // ACCORDION INTERACTIVITY
     function toggleAccordion(headerElement) {
@@ -785,7 +758,7 @@
       }
     }
 
-    // ASCII MATRIX ENGINE
+    // HACKER TERMINAL TYPEWRITER BACKGROUND ENGINE
     const canvas = document.getElementById('ascii-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -796,30 +769,60 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const chars = '0123456789ABCDEF<>[]{}/\\*+=:~_#@$';
-    const fontSize = 13;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+    const techKeywords = [
+      'SINTROPY.AI', 'IOT_SENSOR_GRID', 'ENERGY_OPTIMIZER', 'CAC_REDUCTION',
+      'ABM_PIPELINE', 'DEEP_TECH_GTM', 'SHARED_SAVINGS_25%', 'REALTIME_TELEMETRY',
+      'PAYBACK_PERIOD_CALC', 'HVAC_AUTOMATION', 'ENTERPRISE_CONTRACT', 'QSR_SCALE'
+    ];
 
-    function drawAscii() {
-      ctx.fillStyle = 'rgba(5, 8, 17, 0.15)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const randomChars = '0123456789ABCDEF<>[]{}/\\*+=:~_#@$';
+    const fontHeight = 16;
+    let terminalLines = [];
+    const maxLines = Math.floor(window.innerHeight / fontHeight);
 
-      ctx.fillStyle = '#EAB308';
-      ctx.font = fontSize + 'px monospace';
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars.charAt(Math.floor(Math.random() * chars.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) {
-          drops[i] = 0;
+    function generateTerminalLine() {
+      const isKeyword = Math.random() < 0.35;
+      if (isKeyword) {
+        const kw = techKeywords[Math.floor(Math.random() * techKeywords.length)];
+        return { text: `> [SYS_EXEC] :: ${kw} --status=ACTIVE`, isGold: true };
+      } else {
+        let hex = '0x' + Math.floor(Math.random()*16777215).toString(16).toUpperCase();
+        let str = '> ' + hex + ' ';
+        for(let i=0; i<24; i++) {
+          str += randomChars.charAt(Math.floor(Math.random()*randomChars.length));
         }
-        drops[i]++;
+        return { text: str, isGold: false };
       }
     }
 
-    setInterval(drawAscii, 33);
+    // Inizializza con righe
+    for(let i=0; i<maxLines; i++) {
+      terminalLines.push(generateTerminalLine());
+    }
+
+    function renderHackerTerminal() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '13px monospace';
+
+      // Aggiorna gradualmente la lista eliminando la prima e aggiungendone una in fondo
+      terminalLines.shift();
+      terminalLines.push(generateTerminalLine());
+
+      for (let i = 0; i < terminalLines.length; i++) {
+        const line = terminalLines[i];
+        const y = (i + 1) * fontHeight;
+
+        if (line.isGold) {
+          ctx.fillStyle = '#EAB308'; // Giallo brand per le parole chiave tech
+        } else {
+          ctx.fillStyle = '#94A3B8'; // Muted grey per il codice esadecimale/ASCII
+        }
+
+        ctx.fillText(line.text, 20, y);
+      }
+    }
+
+    setInterval(renderHackerTerminal, 180); // Scorrimento cadenzato tipo terminale reale
   </script>
 
 </body>
